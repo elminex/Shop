@@ -3,7 +3,7 @@
 /* ACTIONS */
 
 // action name creator
-const reducerName = 'cart';
+const reducerName = 'cartReducer';
 const createActionName = (name) => `app/${reducerName}/${name}`;
 
 /* INITIAL STATE */

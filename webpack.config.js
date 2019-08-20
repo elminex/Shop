@@ -19,7 +19,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            plugins: ['react-hot-loader/babel'],
+            plugins: ['react-hot-loader/babel', '@babel/plugin-transform-runtime'],
           },
         },
       },
