@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-
 import { connect } from 'react-redux';
-import { allProductsSelector, loadProductsRequest } from '../../../redux/productsReducer';
-
+import { allProductsSelector, loadProductsRequest, getRequest } from '../../../redux/productsReducer';
+import Loader from '../../Loader/Loader';
+import ProductPreview from '../../ProductPreview/ProductPreview';
+import './ProductsList.scss';
+import Sorting from '../../Sorting/Sorting';
 
 class ProductsList extends React.Component {
   constructor() {
@@ -13,31 +14,16 @@ class ProductsList extends React.Component {
       sorting: 'popular',
       products: [],
     };
-    this.sortingHandler = this.sortingHandler.bind(this);
+    this.sortProducts = this.sortProducts.bind(this);
   }
 
   async componentDidMount() {
-    const { loadProducts } = this.props;
+    const { loadProducts, request } = this.props;
     await loadProducts();
     this.setState({ products: this.props.products });
     console.log('didMount ', this.props);
-    this.sortProducts('popular', 'desc');
-  }
-
-  sortingHandler(e) {
-    switch (e.target.value) {
-      case 'name asc':
-        this.sortProducts('name', 'asc');
-        break;
-      case 'price asc':
-        this.sortProducts('price', 'asc');
-        break;
-      case 'price desc':
-        this.sortProducts('price', 'desc');
-        break;
-      default: {
-        this.sortProducts('popular', 'desc');
-      }
+    if (request.success) {
+      this.sortProducts('popular', 'desc');
     }
   }
 
@@ -56,42 +42,32 @@ class ProductsList extends React.Component {
 
   render() {
     const { sorting, products } = this.state;
-    return (
-      <div>
-        <div>
-          <span>Sort by:</span>
-          <select value={sorting} onChange={this.sortingHandler}>
-            <option value="name asc">Name</option>
-            <option value="price asc">Price ascending</option>
-            <option value="price desc">Price descending</option>
-            <option value="popular">Most popular</option>
-          </select>
-        </div>
-        <ul>
-          {
-            products.map((elem) => (
-              <li key={elem.id}>
-                <Link to={`/product/${elem.id}`}>{elem.name}</Link>
-                <br />
-
-                <span>{elem.company}</span>
-                <br />
-
-                <p>{elem.description}</p>
-                <br />
-
-                <span>{elem.price}</span>
-                <br />
-
-                <img src={elem.photo} alt={`${elem.name}`} />
-                <br />
-                <span>{elem.index}</span>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-    );
+    const { success, error } = this.props.request;
+    let content;
+    switch (true) {
+      case success:
+        content = (
+          <div>
+            <Sorting sorting={sorting} sortProducts={this.sortProducts} />
+            <ul className="products-list__list">
+              {
+                products.map((elem) => (
+                  <li className="products-list__item" key={elem.id}>
+                    <ProductPreview elem={elem} />
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        );
+        break;
+      case error:
+        content = <div>An error occured, please try again</div>;
+        break;
+      default:
+        content = <Loader />;
+    }
+    return content;
   }
 }
 
@@ -106,10 +82,25 @@ ProductsList.propTypes = {
     photo: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
   })).isRequired,
+  request: PropTypes.shape({
+    success: PropTypes.oneOfType([
+      PropTypes.bool,
+      () => null,
+    ]),
+    pending: PropTypes.oneOfType([
+      PropTypes.bool,
+      () => null,
+    ]),
+    error: PropTypes.oneOfType([
+      PropTypes.bool,
+      () => null,
+    ]),
+  }).isRequired,
 };
 
 const mapStateToProps = (state) => ({
   products: allProductsSelector(state),
+  request: getRequest(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

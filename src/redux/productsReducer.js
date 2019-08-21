@@ -1,6 +1,11 @@
 /* SELECTORS */
 
 export const allProductsSelector = ({ products }) => products.products;
+export const singleProductSelector = ({ products }, id) => products.products.find(
+  (item) => item.id === id,
+);
+export const getRequest = ({ products }) => products.request;
+
 
 /* ACTIONS */
 // action name creator

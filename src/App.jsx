@@ -4,11 +4,11 @@ import { hot } from 'react-hot-loader';
 import './App.scss';
 import MainLayout from './components/Pages/MainLayout/MainLayout';
 import MainPage from './components/Pages/MainPage/MainPage';
-import Product from './components/Product/Product';
+import Product from './components/Pages/Product/ConnectedProduct';
 import Cart from './components/Cart/Cart';
-import Faq from './components/Faq/Faq';
-import Contact from './components/Contact/Contact';
-import Terms from './components/Terms/Terms';
+import Faq from './components/Pages/Faq/Faq';
+import Contact from './components/Pages/Contact/Contact';
+import Terms from './components/Pages/Terms/Terms';
 
 const App = () => (
   <MainLayout>
