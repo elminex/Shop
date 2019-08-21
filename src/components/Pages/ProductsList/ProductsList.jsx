@@ -20,47 +20,42 @@ class ProductsList extends React.Component {
     const { loadProducts } = this.props;
     await loadProducts();
     this.setState({ products: this.props.products });
-    console.log('render ', this.props);
+    console.log('didMount ', this.props);
+    this.sortProducts('popular', 'desc');
   }
 
   sortingHandler(e) {
-    console.log(e.target.value);
     switch (e.target.value) {
       case 'name asc':
-        console.log("case name")
-        this.sort('name', 'asc');
+        this.sortProducts('name', 'asc');
         break;
       case 'price asc':
-        this.sort('price', 'asc');
+        this.sortProducts('price', 'asc');
         break;
       case 'price desc':
-        this.sort('price', 'desc');
+        this.sortProducts('price', 'desc');
         break;
       default: {
-        this.sort('index', 'desc');
+        this.sortProducts('popular', 'desc');
       }
     }
   }
 
-  sort(sort, direction) {
-    debugger;
-    console.log(sort, direction);
+  sortProducts(sort, direction) {
+    const { products } = this.state;
     let sorted = [];
-    if(sort === index) {
-      sorted = this.state.products.sort()
-    }
-    if (direction === 'asc' || !direction) {
-      sorted = this.state.products.sort((a, b) => a[sort].localeCompare(b[sort], { ignorePunctuation: true }));
+    if (sort === 'popular') {
+      sorted = products.sort((a, b) => b.index - a.index);
+    } else if (direction === 'asc' || !direction) {
+      sorted = products.sort((a, b) => a[sort].localeCompare(b[sort], { ignorePunctuation: true }));
     } else {
-      sorted = this.state.products.sort((a, b) => b[sort].localeCompare(a[sort], { ignorePunctuation: true }));
-      console.log(sorted)
+      sorted = products.sort((a, b) => b[sort].localeCompare(a[sort], { ignorePunctuation: true }));
     }
-    this.setState({ sorting: sort === 'index' ? 'popular' : `${sort} ${direction}`, products: sorted });
+    this.setState({ sorting: `${sort} ${direction}`, products: sorted });
   }
 
   render() {
     const { sorting, products } = this.state;
-    console.log('products ', products);
     return (
       <div>
         <div>
@@ -77,10 +72,20 @@ class ProductsList extends React.Component {
             products.map((elem) => (
               <li key={elem.id}>
                 <Link to={`/product/${elem.id}`}>{elem.name}</Link>
+                <br />
+
                 <span>{elem.company}</span>
+                <br />
+
                 <p>{elem.description}</p>
+                <br />
+
                 <span>{elem.price}</span>
+                <br />
+
                 <img src={elem.photo} alt={`${elem.name}`} />
+                <br />
+                <span>{elem.index}</span>
               </li>
             ))
           }
