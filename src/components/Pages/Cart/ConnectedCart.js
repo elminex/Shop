@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { cartSelector, changeDiscount, changeQuantity } from '../../../redux/reducer';
+import { cartSelector, changeDiscountAndQuantity } from '../../../redux/reducer';
 import Cart from './Cart';
 
 const mapStateToProps = (state) => ({
@@ -7,8 +7,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  changeDiscount: (newDiscount, id) => dispatch(changeDiscount(newDiscount, id)),
-  changeQuantity: (newQuantity, id) => dispatch(changeQuantity(newQuantity, id)),
+  changeDiscountAndQuantity: (newDiscount, newQuantity, id) => dispatch(changeDiscountAndQuantity(newDiscount, newQuantity, id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

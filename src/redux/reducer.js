@@ -31,11 +31,16 @@ export const resetRequest = () => ({ type: RESET_REQUEST });
 export const ADD_PRODUCT_TO_CART = createActionName('ADD_PRODUCT_TO_CART');
 export const AddProductToCart = (item) => ({ product: item, type: ADD_PRODUCT_TO_CART });
 
-export const CHANGE_DISCOUNT = createActionName('CHANGE_DISCOUNT');
-export const changeDiscount = (discount, id) => ({ type: CHANGE_DISCOUNT, discount, id });
+export const CHANGE_DISCOUNT_AND_QUANTITY = createActionName('CHANGE_DISCOUNT_AND_QUANTITY');
+export const changeDiscountAndQuantity = (discount, quantity, id) => ({
+  type: CHANGE_DISCOUNT_AND_QUANTITY,
+  discount,
+  quantity,
+  id,
+});
 
-export const CHANGE_QUANTITY = createActionName('CHANGE_QUANTITY');
-export const changeQuantity = (quantity, id) => ({ type: CHANGE_QUANTITY, quantity, id });
+export const REMOVE_FROM_CART = createActionName('REMOVE_FROM_CART');
+export const removeFromCart = (id) => ({ type: REMOVE_FROM_CART, id });
 
 /* INITIAL STATE */
 
@@ -46,21 +51,7 @@ const initialState = {
     error: null,
     success: null,
   },
-  cart: [
-    {
-      product: {
-        index: 6,
-        id: '9c57491d-9b6e-40ec-b929-3dc6eee7fee4',
-        name: 'Veal Inside - Provimi',
-        company: 'Patriot Transportation Holding, Inc.',
-        photo: 'http://dummyimage.com/200x160.png/5fa2dd/ffffff',
-        price: '50.70',
-        description: 'Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.',
-      },
-      quantity: 3,
-      discount: 20,
-    },
-  ],
+  cart: [],
 };
 
 /* REDUCER */
@@ -84,31 +75,28 @@ export default function shopReducer(statePart = initialState, action = {}) {
           product: action.product,
           quantity: 1,
           discount: 0,
+          itemsPrice: action.product.price,
         },
         ...statePart.cart,
         ],
       };
-    case CHANGE_DISCOUNT:
+    case CHANGE_DISCOUNT_AND_QUANTITY:
       return {
         ...statePart,
         cart: statePart.cart.map((cartItem) => {
           if (cartItem.product.id === action.id) {
-            cartItem.discount = action.discount;
+            cartItem.quantity = parseFloat(action.quantity);
+            cartItem.discount = parseFloat(action.discount);
+            cartItem.itemsPrice = (cartItem.product.price - (cartItem.product.price * (action.discount / 100))) * cartItem.quantity;
             return cartItem;
           }
           return cartItem;
         }),
       };
-    case CHANGE_QUANTITY:
+    case REMOVE_FROM_CART:
       return {
         ...statePart,
-        cart: statePart.cart.map((cartItem) => {
-          if (cartItem.product.id === action.id) {
-            cartItem.quantity = action.quantity;
-            return cartItem;
-          }
-          return cartItem;
-        }),
+        cart: statePart.cart.filter((cartItem) => cartItem.product.id !== action.id),
       };
     default:
       return statePart;
