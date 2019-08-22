@@ -33,7 +33,6 @@ const ProductPreview = ({ elem }) => {
             {elem.price}
           </span>
         </div>
-
       </div>
       <p className="product-preview__description">{cutText(elem.description)}</p>
     </div>

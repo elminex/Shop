@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { allProductsSelector, loadProductsRequest, getRequest } from '../../../redux/productsReducer';
+import { allProductsSelector, loadProductsRequest, getRequest } from '../../../redux/reducer';
 import Loader from '../../Loader/Loader';
 import ProductPreview from '../../ProductPreview/ProductPreview';
 import './ProductsList.scss';
@@ -21,7 +21,6 @@ class ProductsList extends React.Component {
     const { loadProducts, request } = this.props;
     await loadProducts();
     this.setState({ products: this.props.products });
-    console.log('didMount ', this.props);
     if (request.success) {
       this.sortProducts('popular', 'desc');
     }
