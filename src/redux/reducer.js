@@ -42,6 +42,9 @@ export const changeDiscountAndQuantity = (discount, quantity, id) => ({
 export const REMOVE_FROM_CART = createActionName('REMOVE_FROM_CART');
 export const removeFromCart = (id) => ({ type: REMOVE_FROM_CART, id });
 
+export const SELECT_SHIPPING_OPTION = createActionName('SELECT_SHIPPING_OPTION');
+export const selectShippingOption = (option) => ({ type: SELECT_SHIPPING_OPTION, shipping: option });
+
 /* INITIAL STATE */
 
 const initialState = {
@@ -52,6 +55,7 @@ const initialState = {
     success: null,
   },
   cart: [],
+  shipping: '',
 };
 
 /* REDUCER */
@@ -97,6 +101,12 @@ export default function shopReducer(statePart = initialState, action = {}) {
       return {
         ...statePart,
         cart: statePart.cart.filter((cartItem) => cartItem.product.id !== action.id),
+      };
+    case SELECT_SHIPPING_OPTION:
+      console.log(action);
+      return {
+        ...statePart,
+        shipping: action.shipping,
       };
     default:
       return statePart;

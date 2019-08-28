@@ -6,11 +6,23 @@ const Header = () => (
   <header className="header">
     <h1 className="header__logo">Shop name</h1>
     <nav className="header__nav">
-      <NavLink className="header__link" to="/">Home</NavLink>
-      <NavLink className="header__link" to="/faq">FAQ</NavLink>
-      <NavLink className="header__link" to="/terms">Terms and Conditions</NavLink>
-      <NavLink className="header__link" to="/contact">Contact</NavLink>
-      <NavLink className="header__link" to="/cart">Cart</NavLink>
+      <ul className="header__nav-list">
+        <li className="header__nav-item">
+          <NavLink className="header__link" activeClassName="header__link--active" exact to="/">Home</NavLink>
+        </li>
+        <li className="header__nav-item">
+          <NavLink className="header__link" activeClassName="header__link--active" to="/shop">Shop</NavLink>
+        </li>
+        <li className="header__nav-item">
+          <NavLink className="header__link" activeClassName="header__link--active" to="/terms">Terms and Conditions</NavLink>
+        </li>
+        <li className="header__nav-item">
+          <NavLink className="header__link" activeClassName="header__link--active" to="/contact">Contact</NavLink>
+        </li>
+        <li className="header__nav-item">
+          <NavLink className="header__link" activeClassName="header__link--active" to="/cart">Cart</NavLink>
+        </li>
+      </ul>
     </nav>
   </header>
 );

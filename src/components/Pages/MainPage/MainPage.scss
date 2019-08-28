@@ -1,0 +1,12 @@
+.main-page {
+  &__gallery {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    columns: 200px 2;
+
+    &-item {
+       break-inside: avoid;
+    }
+  }
+}

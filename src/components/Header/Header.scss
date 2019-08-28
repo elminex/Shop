@@ -1,18 +1,55 @@
+@import '../../variables.scss';
+
 .header {
-  width: 100%;
+  width: 300px;
   border: 1px solid blue;
-  display: flex;
-  justify-content: space-between;
-  padding:16px;
+  padding: 60px;
+
   &__logo {
-    margin: 0;
+    margin-bottom: 50px;
     font-size: 2rem;
     line-height: 2rem;
+
   }
-  &__nav {
-    padding: 8px 0;
+
+  &__nav-list {
+    list-style-type: none;
+    padding: 0;
   }
+
+  &__nav-item {
+    padding: 20px 0;
+    font-size: 14px;
+  }
+
   &__link {
-    padding: 8px 8px;
+    position: relative;
+    text-decoration: none;
+    color: $black;
+    text-transform: uppercase;
+    transition: color .2s;
+
+    &:after {
+      content: "";
+      position: absolute;
+      top: calc(50% - 2px);
+      left: -60px;
+      width: 0;
+      height: 4px;
+      background-color: $yellow;
+      transition: all .3s
+    }
+
+    &:hover {
+      color: $yellow;
+    }
+
+    &--active {
+
+      &:after {
+        width: 35px;
+
+      }
+    }
   }
 }
