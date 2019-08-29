@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { productTypes } from '../../PropTypes/PropTypes';
 import './ProductPreview.scss';
 
 const ProductPreview = ({ elem }) => {
@@ -42,13 +42,5 @@ const ProductPreview = ({ elem }) => {
 export default ProductPreview;
 
 ProductPreview.propTypes = {
-  elem: PropTypes.shape({
-    company: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    index: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    photo: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
-  }).isRequired,
+  elem: productTypes.isRequired,
 };

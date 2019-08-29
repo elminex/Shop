@@ -7,7 +7,7 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  addToCart: (product) => dispatch(AddProductToCart(product)),
+  addToCart: (product, quantity) => dispatch(AddProductToCart(product, quantity)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddToCart);

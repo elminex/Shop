@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { productTypes } from '../../PropTypes/PropTypes';
 
-const AddToCart = ({ product, addToCart }) => {
-  console.log(product);
-  addToCart(product);
+const AddToCart = ({ product, addToCart, location }) => {
+  addToCart(product, location.quantity);
   return (
     <div>
       Product added to cart.
@@ -14,3 +15,16 @@ const AddToCart = ({ product, addToCart }) => {
 };
 
 export default AddToCart;
+
+AddToCart.propTypes = {
+  product: productTypes.isRequired,
+
+  addToCart: PropTypes.func.isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+    quantity: PropTypes.number.isRequired,
+    hash: PropTypes.string.isRequired,
+    key: PropTypes.string.isRequired,
+    search: PropTypes.string.isRequired,
+  }).isRequired,
+};

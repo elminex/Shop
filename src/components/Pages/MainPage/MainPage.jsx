@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Loader from '../../Loader/Loader';
 import ProductGaleryItem from '../../ProductGaleryItem/ProductGaleryItem';
+import { productTypes, requestTypes } from '../../../PropTypes/PropTypes';
 import './MainPage.scss';
 
 class MainPage extends React.Component {
@@ -56,27 +57,6 @@ export default MainPage;
 
 MainPage.propTypes = {
   loadProducts: PropTypes.func.isRequired,
-  products: PropTypes.arrayOf(PropTypes.shape({
-    company: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    index: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    photo: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
-  })).isRequired,
-  request: PropTypes.shape({
-    success: PropTypes.oneOfType([
-      PropTypes.bool,
-      () => null,
-    ]),
-    pending: PropTypes.oneOfType([
-      PropTypes.bool,
-      () => null,
-    ]),
-    error: PropTypes.oneOfType([
-      PropTypes.bool,
-      () => null,
-    ]),
-  }).isRequired,
+  products: PropTypes.arrayOf(productTypes).isRequired,
+  request: requestTypes.isRequired,
 };

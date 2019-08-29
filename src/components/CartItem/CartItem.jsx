@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { cartItemTypes } from '../../PropTypes/PropTypes';
 
 const CartItem = ({ item, changeDiscountAndQuantity, removeItem }) => (
   <li key={item.product.id}>
@@ -38,20 +39,7 @@ const CartItem = ({ item, changeDiscountAndQuantity, removeItem }) => (
 export default CartItem;
 
 CartItem.propTypes = {
-  item: PropTypes.shape({
-    product: PropTypes.shape({
-      company: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      id: PropTypes.string.isRequired,
-      index: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      photo: PropTypes.string.isRequired,
-      price: PropTypes.string.isRequired,
-    }),
-    quantity: PropTypes.number.isRequired,
-    discount: PropTypes.string.isRequired,
-    itemsPrice: PropTypes.number.isRequired,
-  }).isRequired,
+  item: cartItemTypes.isRequired,
   changeDiscountAndQuantity: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,
 };

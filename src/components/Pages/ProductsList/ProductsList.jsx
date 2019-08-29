@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { allProductsSelector, loadProductsRequest, getRequest } from '../../../redux/reducer';
+import { productTypes, requestTypes } from '../../../PropTypes/PropTypes';
 import Loader from '../../Loader/Loader';
 import ProductPreview from '../../ProductPreview/ProductPreview';
 import './ProductsList.scss';
@@ -70,40 +69,10 @@ class ProductsList extends React.Component {
   }
 }
 
+export default ProductsList;
+
 ProductsList.propTypes = {
   loadProducts: PropTypes.func.isRequired,
-  products: PropTypes.arrayOf(PropTypes.shape({
-    company: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
-    index: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    photo: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
-  })).isRequired,
-  request: PropTypes.shape({
-    success: PropTypes.oneOfType([
-      PropTypes.bool,
-      () => null,
-    ]),
-    pending: PropTypes.oneOfType([
-      PropTypes.bool,
-      () => null,
-    ]),
-    error: PropTypes.oneOfType([
-      PropTypes.bool,
-      () => null,
-    ]),
-  }).isRequired,
+  products: PropTypes.arrayOf(productTypes).isRequired,
+  request: requestTypes.isRequired,
 };
-
-const mapStateToProps = (state) => ({
-  products: allProductsSelector(state),
-  request: getRequest(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  loadProducts: () => dispatch(loadProductsRequest()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProductsList);

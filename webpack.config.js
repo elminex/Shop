@@ -6,6 +6,7 @@ module.exports = {
   entry: './src/index.jsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',  
     filename: 'bundle.js',
   },
   module: {
@@ -64,8 +65,10 @@ module.exports = {
     minimizer: [new UglifyJsPlugin()],
   },
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 9000,
+    contentBase: './src/',
+    hot: true,
+    historyApiFallback: true,
   },
 };

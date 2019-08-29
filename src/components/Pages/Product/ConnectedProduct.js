@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { singleProductSelector, getRequest } from '../../../redux/reducer';
+import { singleProductSelector, getRequest, loadProductsRequest } from '../../../redux/reducer';
 import Product from './Product';
 
 const mapStateToProps = (state, ownProps) => ({
@@ -7,4 +7,8 @@ const mapStateToProps = (state, ownProps) => ({
   request: getRequest(state),
 });
 
-export default connect(mapStateToProps)(Product);
+const mapDispatchToProps = (dispatch) => ({
+  loadProducts: () => dispatch(loadProductsRequest()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Product);

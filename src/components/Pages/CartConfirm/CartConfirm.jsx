@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { cartItemTypes } from '../../../PropTypes/PropTypes';
 
 const CartConfirm = ({ cart }) => (
   <div>
@@ -24,18 +25,5 @@ const CartConfirm = ({ cart }) => (
 export default CartConfirm;
 
 CartConfirm.propTypes = {
-  cart: PropTypes.shape({
-    product: PropTypes.shape({
-      company: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      id: PropTypes.string.isRequired,
-      index: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      photo: PropTypes.string.isRequired,
-      price: PropTypes.string.isRequired,
-    }),
-    quantity: PropTypes.number.isRequired,
-    discount: PropTypes.string.isRequired,
-    itemsPrice: PropTypes.number.isRequired,
-  }).isRequired,
+  cart: PropTypes.arrayOf(cartItemTypes).isRequired,
 };

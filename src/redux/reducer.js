@@ -29,7 +29,11 @@ export const RESET_REQUEST = createActionName('RESET_REQUEST');
 export const resetRequest = () => ({ type: RESET_REQUEST });
 
 export const ADD_PRODUCT_TO_CART = createActionName('ADD_PRODUCT_TO_CART');
-export const AddProductToCart = (item) => ({ product: item, type: ADD_PRODUCT_TO_CART });
+export const AddProductToCart = (item, quantity) => ({
+  product: item,
+  type: ADD_PRODUCT_TO_CART,
+  quantity,
+});
 
 export const CHANGE_DISCOUNT_AND_QUANTITY = createActionName('CHANGE_DISCOUNT_AND_QUANTITY');
 export const changeDiscountAndQuantity = (discount, quantity, id) => ({
@@ -43,7 +47,10 @@ export const REMOVE_FROM_CART = createActionName('REMOVE_FROM_CART');
 export const removeFromCart = (id) => ({ type: REMOVE_FROM_CART, id });
 
 export const SELECT_SHIPPING_OPTION = createActionName('SELECT_SHIPPING_OPTION');
-export const selectShippingOption = (option) => ({ type: SELECT_SHIPPING_OPTION, shipping: option });
+export const selectShippingOption = (option) => ({
+  type: SELECT_SHIPPING_OPTION,
+  shipping: option,
+});
 
 /* INITIAL STATE */
 
@@ -72,18 +79,35 @@ export default function shopReducer(statePart = initialState, action = {}) {
       return { ...statePart, request: { pending: false, error: action.error, success: false } };
     case RESET_REQUEST:
       return { ...statePart, request: { pending: false, error: null, success: null } };
-    case ADD_PRODUCT_TO_CART:
+    case ADD_PRODUCT_TO_CART: {
+      console.log(action);
+      if (statePart.cart.some((item) => item.product.id === action.product.id)) {
+        return {
+          ...statePart,
+          cart: statePart.cart.map((cartItem) => {
+            if (cartItem.product.id === action.product.id) {
+              cartItem.quantity += parseFloat(action.quantity);
+              cartItem.itemsPrice = (cartItem.product.price
+                - (cartItem.product.price * (action.discount / 100)))
+                * cartItem.quantity;
+              return cartItem;
+            }
+            return cartItem;
+          }),
+        };
+      }
       return {
         ...statePart,
         cart: [{
           product: action.product,
-          quantity: 1,
+          quantity: parseFloat(action.quantity),
           discount: 0,
           itemsPrice: action.product.price,
         },
         ...statePart.cart,
         ],
       };
+    }
     case CHANGE_DISCOUNT_AND_QUANTITY:
       return {
         ...statePart,
@@ -91,7 +115,8 @@ export default function shopReducer(statePart = initialState, action = {}) {
           if (cartItem.product.id === action.id) {
             cartItem.quantity = parseFloat(action.quantity);
             cartItem.discount = parseFloat(action.discount);
-            cartItem.itemsPrice = (cartItem.product.price - (cartItem.product.price * (action.discount / 100))) * cartItem.quantity;
+            cartItem.itemsPrice = (cartItem.product.price
+              - (cartItem.product.price * (action.discount / 100))) * cartItem.quantity;
             return cartItem;
           }
           return cartItem;
@@ -103,7 +128,6 @@ export default function shopReducer(statePart = initialState, action = {}) {
         cart: statePart.cart.filter((cartItem) => cartItem.product.id !== action.id),
       };
     case SELECT_SHIPPING_OPTION:
-      console.log(action);
       return {
         ...statePart,
         shipping: action.shipping,
@@ -118,11 +142,10 @@ export default function shopReducer(statePart = initialState, action = {}) {
 export const loadProductsRequest = () => async (dispatch) => {
   dispatch(startRequest());
   const response = await fetch('http://localhost:3000');
-
   if (response.ok) {
-    dispatch(endRequest());
     const json = await response.json();
     dispatch(getProducts(json));
+    dispatch(endRequest());
   } else {
     dispatch(errorRequest(response.status));
   }

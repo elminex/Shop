@@ -1,4 +1,33 @@
 $yellow: #FBB70F;
 $background: #fff;
-$text-grey: #6D6D6D;
+$text-grey: #6B6B6B;
 $text-black: #131212;
+$green: #1FD34A;
+
+@mixin yellow-line {
+  height: 4px;
+  width: 70px;
+  background-color: $yellow;
+}
+
+@mixin button {
+  display: inline-block;
+  min-width: 160px;
+  height: 55px;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  user-select: none;
+  padding: 0 7px;
+  font-size: 18px;
+  line-height: 56px;
+  background-color: #fbb710;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-decoration: none;
+  &:hover {
+    background-color: $text-black;
+  }
+}

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import CartItem from '../../CartItem/CartItem';
+import { cartItemTypes } from '../../../PropTypes/PropTypes';
 
 class Cart extends React.Component {
   constructor(props) {
@@ -16,7 +17,6 @@ class Cart extends React.Component {
   formHandle(e) {
     const { selectShipping } = this.props;
     const { selectedOption } = this.state;
-    console.log('submit');
     e.preventDefault();
     selectShipping(selectedOption);
     this.setState({ confirm: true });
@@ -88,20 +88,7 @@ class Cart extends React.Component {
 export default Cart;
 
 Cart.propTypes = {
-  cart: PropTypes.arrayOf(PropTypes.shape({
-    product: PropTypes.shape({
-      company: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
-      id: PropTypes.string.isRequired,
-      index: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      photo: PropTypes.string.isRequired,
-      price: PropTypes.string.isRequired,
-    }),
-    quantity: PropTypes.number.isRequired,
-    discount: PropTypes.string.isRequired,
-    itemsPrice: PropTypes.number.isRequired,
-  })).isRequired,
+  cart: PropTypes.arrayOf(cartItemTypes).isRequired,
   changeDiscountAndQuantity: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,
   selectShipping: PropTypes.func.isRequired,
