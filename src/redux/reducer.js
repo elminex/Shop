@@ -80,7 +80,6 @@ export default function shopReducer(statePart = initialState, action = {}) {
     case RESET_REQUEST:
       return { ...statePart, request: { pending: false, error: null, success: null } };
     case ADD_PRODUCT_TO_CART: {
-      console.log(action);
       if (statePart.cart.some((item) => item.product.id === action.product.id)) {
         return {
           ...statePart,
@@ -88,7 +87,7 @@ export default function shopReducer(statePart = initialState, action = {}) {
             if (cartItem.product.id === action.product.id) {
               cartItem.quantity += parseFloat(action.quantity);
               cartItem.itemsPrice = (cartItem.product.price
-                - (cartItem.product.price * (action.discount / 100)))
+                - (cartItem.product.price * (cartItem.discount / 100)))
                 * cartItem.quantity;
               return cartItem;
             }

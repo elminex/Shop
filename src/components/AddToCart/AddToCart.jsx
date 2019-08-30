@@ -9,7 +9,7 @@ const AddToCart = ({ product, addToCart, location }) => {
     <div>
       Product added to cart.
       <Link to="/cart">Go to cart</Link>
-      <Link to="/">Continue shopping</Link>
+      <Link to="/shop">Continue shopping</Link>
     </div>
   );
 };

@@ -14,7 +14,7 @@ const Product = ({ product, request, loadProducts }) => {
   }, [product]);
 
   const handleChange = (e) => {
-    setQuantity(e.target.value);
+    setQuantity(parseInt(e.target.value, 10));
   };
 
   let content;
@@ -44,7 +44,7 @@ const Product = ({ product, request, loadProducts }) => {
             <p className="product__description">{product.description}</p>
             <label htmlFor="quantity">
               Quantity:
-              <input id="quantity" type="number" value={quantity} min="1" max={product.stock} onChange={(e) => handleChange(e)} />
+              <input id="quantity" type="number" value={quantity} min="0" max={product.stock} onChange={(e) => handleChange(e)} />
             </label>
             <Link
               className="product__button"
@@ -71,7 +71,9 @@ const Product = ({ product, request, loadProducts }) => {
 export default Product;
 
 Product.propTypes = {
-  product: productTypes.isRequired,
+  product: PropTypes.oneOfType([
+    productTypes,
+    () => undefined]),
   request: requestTypes.isRequired,
   loadProducts: PropTypes.func.isRequired,
 };

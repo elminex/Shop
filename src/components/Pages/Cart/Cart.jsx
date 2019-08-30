@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import CartItem from '../../CartItem/CartItem';
 import { cartItemTypes } from '../../../PropTypes/PropTypes';
+import './Cart.scss';
 
 class Cart extends React.Component {
   constructor(props) {
@@ -41,8 +42,8 @@ class Cart extends React.Component {
         shippingCost = 10;
         break;
     }
-    const total = cart.map((item) => parseFloat(item.itemsPrice))
-      .reduce((a, b) => a + b, 0) + shippingCost;
+    const subTotal = cart.map((item) => parseFloat(item.itemsPrice))
+      .reduce((a, b) => a + b, 0);
     if (confirm) {
       return <Redirect to="/cart/confirm" />;
     }
@@ -51,35 +52,56 @@ class Cart extends React.Component {
     }
     return (
       <div>
-        <ul>
-          {cart.map((cartItem) => (
-            <CartItem
-              key={cartItem.product.id}
-              item={cartItem}
-              changeDiscountAndQuantity={changeDiscountAndQuantity}
-              removeItem={removeItem}
-            />
-          ))}
-        </ul>
-        <span>
-          Total price:
-          {Math.round(total * 100) / 100}
-        </span>
-        <form onSubmit={(e) => this.formHandle(e)}>
-          <label htmlFor="economy">
-            Economy
-            <input id="economy" name="shipping" type="radio" value="economy" onChange={this.selectOptionHandle} />
-          </label>
-          <label htmlFor="premium">
-            Premium
-            <input id="premium" name="shipping" type="radio" value="premium" onChange={this.selectOptionHandle} />
-          </label>
-          <label htmlFor="superPremium">
-            Super Premium
-            <input id="superPremium" name="shipping" type="radio" value="superPremium" onChange={this.selectOptionHandle} />
-          </label>
-          <button type="submit">Everything is great, lets pay!</button>
-        </form>
+        <div className="cart__container">
+          <table className="cart__table">
+            <thead>
+              <tr>
+                <th>No.</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cart.map((cartItem, index) => (
+                <CartItem
+                  number={index + 1}
+                  key={cartItem.product.id}
+                  item={cartItem}
+                  changeDiscountAndQuantity={changeDiscountAndQuantity}
+                  removeItem={removeItem}
+                />
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="cart__total">
+          <span>
+            Sub-total:
+          {Math.round(subTotal * 100) / 100}
+          </span>
+
+          <form onSubmit={(e) => this.formHandle(e)}>
+            <label htmlFor="economy">
+              Economy
+            <input id="economy" name="shipping" type="radio" value="economy" checked={selectedOption === "economy"} onChange={this.selectOptionHandle} />
+            </label>
+            <label htmlFor="premium">
+              Premium
+            <input id="premium" name="shipping" type="radio" value="premium" checked={selectedOption === "premium"} onChange={this.selectOptionHandle} />
+            </label>
+            <label htmlFor="superPremium">
+              Super Premium
+            <input id="superPremium" name="shipping" type="radio" value="superPremium" checked={selectedOption === "superPremium"} onChange={this.selectOptionHandle} />
+            </label>
+            <span>
+              Total:
+              {Math.round(subTotal * 100) / 100 + shippingCost}
+            </span>
+            <button type="submit">Everything is great, lets pay!</button>
+          </form>
+        </div>
       </div>
     );
   }
