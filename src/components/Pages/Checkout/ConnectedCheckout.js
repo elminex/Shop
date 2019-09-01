@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { cartSelector } from '../../../redux/reducer';
-import CartConfirm from './CartConfirm';
+import CartConfirm from './Checkout';
 
 const mapStateToProps = (state) => ({
   cart: cartSelector(state),

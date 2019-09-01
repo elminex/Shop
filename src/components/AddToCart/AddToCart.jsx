@@ -2,14 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { productTypes } from '../../PropTypes/PropTypes';
+import './AddToCart.scss';
 
 const AddToCart = ({ product, addToCart, location }) => {
   addToCart(product, location.quantity);
   return (
-    <div>
-      Product added to cart.
-      <Link to="/cart">Go to cart</Link>
-      <Link to="/shop">Continue shopping</Link>
+    <div className="add-to-cart__container">
+      <h2 className="add-to-cart__text">Product added to cart.</h2>
+      <Link className="add-to-cart__button" to="/cart">Go to cart</Link>
+      <Link className="add-to-cart__button" to="/shop">Continue shopping</Link>
     </div>
   );
 };

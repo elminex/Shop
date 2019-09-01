@@ -32,10 +32,7 @@ const Product = ({ product, request, loadProducts }) => {
               $
               {product.price}
             </span>
-            <p className="product__in-stock">
-              In stock:
-              <span className="product__in-stock-number" style={product.stock > 0 ? { color: '#1FD34A' } : { color: '#dc3545' }}>{product.stock}</span>
-            </p>
+            {product.stock === true ? <span className="product__in-stock" style={{ color: '#1FD34A' }}>In stock</span> : <span className="product__in-stock" style={{ color: '#dc3545' }}>Out of stock</span>}
             <span className="product__producer">
               Producer:
               <br />
@@ -44,7 +41,7 @@ const Product = ({ product, request, loadProducts }) => {
             <p className="product__description">{product.description}</p>
             <label htmlFor="quantity">
               Quantity:
-              <input id="quantity" type="number" value={quantity} min="0" max={product.stock} onChange={(e) => handleChange(e)} />
+              <input id="quantity" type="number" value={quantity} min="0" max={20} onChange={(e) => handleChange(e)} />
             </label>
             <Link
               className="product__button"

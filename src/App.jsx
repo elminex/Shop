@@ -10,7 +10,7 @@ import Faq from './components/Pages/Faq/Faq';
 import Contact from './components/Pages/Contact/Contact';
 import Terms from './components/Pages/Terms/Terms';
 import AddToCart from './components/AddToCart/ConnectedAddToCart';
-import CartConfirm from './components/Pages/CartConfirm/ConnectedCartConfirm';
+import Checkout from './components/Pages/Checkout/ConnectedCheckout';
 import Shop from './components/Pages/Shop/Shop';
 
 const App = () => (
@@ -24,7 +24,7 @@ const App = () => (
       <Route exact path="/faq" component={Faq} />
       <Route exact path="/contact" component={Contact} />
       <Route exact path="/terms" component={Terms} />
-      <Route exact path="/cart/confirm" component={CartConfirm} />
+      <Route exact path="/cart/checkout" component={Checkout} />
     </Switch>
   </MainLayout>
 );

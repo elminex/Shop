@@ -32,3 +32,24 @@ $green: #1FD34A;
     background-color: $text-black;
   }
 }
+
+@mixin button-square {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  user-select: none;
+  padding: 0;
+  font-size: 18px;
+  background-color: #fbb710;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  text-decoration: none;
+  &:hover {
+    background-color: $text-black;
+  }
+}

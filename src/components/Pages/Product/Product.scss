@@ -27,6 +27,10 @@
     @include yellow-line;
   }
 
+  &__in-stock {
+    margin: 8px 0 16px;
+  }
+
   &__name {
     font-size: 20px;
     color: $text-black;
@@ -35,14 +39,7 @@
   &__price {
     font-size: 24px;
     color: $yellow;
-  }
-
-  &__in-stock {
-    color: $text-grey;
-
-    &-number {
-      margin-left: 4px;
-    }
+    margin-bottom: 8px;
   }
 
   &__description {
@@ -58,5 +55,6 @@
 
   &__button {
     @include button;
+    margin-top: 32px;
   }
 }

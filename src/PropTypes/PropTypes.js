@@ -8,7 +8,7 @@ export const productTypes = PropTypes.shape({
   name: PropTypes.string.isRequired,
   photo: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-  stock: PropTypes.number.isRequired,
+  stock: PropTypes.bool.isRequired,
   sales: PropTypes.number.isRequired,
 });
 
