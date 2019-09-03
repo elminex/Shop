@@ -2,16 +2,22 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { productTypes } from '../../PropTypes/PropTypes';
+import ErrorPage from '../Pages/ErrorPage/ErrorPage';
 import './AddToCart.scss';
 
 const AddToCart = ({ product, addToCart, location }) => {
-  addToCart(product, location.quantity);
+  if (product && location.quantity) {
+    addToCart(product, location.quantity);
+    return (
+      <div className="add-to-cart__container">
+        <h2 className="add-to-cart__text">Product added to cart.</h2>
+        <Link className="add-to-cart__button" to="/cart">Go to cart</Link>
+        <Link className="add-to-cart__button" to="/shop">Continue shopping</Link>
+      </div>
+    );
+  }
   return (
-    <div className="add-to-cart__container">
-      <h2 className="add-to-cart__text">Product added to cart.</h2>
-      <Link className="add-to-cart__button" to="/cart">Go to cart</Link>
-      <Link className="add-to-cart__button" to="/shop">Continue shopping</Link>
-    </div>
+    <ErrorPage />
   );
 };
 

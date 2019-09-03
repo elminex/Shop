@@ -2,6 +2,9 @@
 
 .cart {
   padding-top: 60px;
+  &--empty {
+    text-align: center;
+  }
 
   &__title {
     font-size: 32px;

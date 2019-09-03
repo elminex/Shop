@@ -4,7 +4,7 @@ import { cartItemTypes } from '../../PropTypes/PropTypes';
 
 const CartItem = ({
   item,
-  changeDiscountAndQuantity,
+  changeQuantity,
   removeItem,
   number,
 }) => (
@@ -25,8 +25,7 @@ const CartItem = ({
           id="quantity"
           type="number"
           value={item.quantity}
-          onChange={(e) => changeDiscountAndQuantity(
-            item.discount,
+          onChange={(e) => changeQuantity(
             e.target.value,
             item.product.id,
           )}
@@ -43,7 +42,7 @@ export default CartItem;
 
 CartItem.propTypes = {
   item: cartItemTypes.isRequired,
-  changeDiscountAndQuantity: PropTypes.func.isRequired,
+  changeQuantity: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,
   number: PropTypes.number.isRequired,
 };

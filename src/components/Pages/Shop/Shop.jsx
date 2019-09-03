@@ -2,9 +2,7 @@ import React from 'react';
 import ProductsList from '../ProductsList/ConnectedProductsList';
 
 const Shop = () => (
-  <div>
-    <ProductsList />
-  </div>
+  <ProductsList />
 );
 
 export default Shop;

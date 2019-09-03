@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import CartItem from '../../CartItem/CartItem';
 import { cartItemTypes } from '../../../PropTypes/PropTypes';
 import './Cart.scss';
@@ -15,40 +15,53 @@ class Cart extends React.Component {
     this.selectOptionHandle = this.selectOptionHandle.bind(this);
   }
 
+  componentDidMount() {
+    const { selectShipping, countTotal } = this.props;
+    selectShipping(20);
+    countTotal();
+  }
+
   formHandle(e) {
-    const { selectShipping } = this.props;
-    const { selectedOption } = this.state;
     e.preventDefault();
-    selectShipping(selectedOption);
     this.setState({ checkout: true });
   }
 
   selectOptionHandle(e) {
+    const { selectShipping, countTotal } = this.props;
+    const { selectedOption } = this.state;
     this.setState({ selectedOption: e.target.value });
+    switch (selectedOption) {
+      case 'economy':
+        selectShipping(10);
+        break;
+      case 'premium':
+        selectShipping(20);
+        break;
+      default:
+        selectShipping(30);
+        break;
+    }
+    countTotal();
   }
 
   render() {
-    const { cart, changeDiscountAndQuantity, removeItem } = this.props;
+    const {
+      cart,
+      changeQuantity,
+      removeItem,
+      data,
+    } = this.props;
     const { selectedOption, checkout } = this.state;
-    let shippingCost;
-    switch (selectedOption) {
-      case 'premium':
-        shippingCost = 20;
-        break;
-      case 'superPremium':
-        shippingCost = 30;
-        break;
-      default:
-        shippingCost = 10;
-        break;
-    }
-    const subTotal = cart.map((item) => parseFloat(item.itemsPrice))
-      .reduce((a, b) => a + b, 0);
     if (checkout) {
       return <Redirect to="/cart/checkout" />;
     }
     if (cart.length === 0) {
-      return (<div>The cart is empty. </div>);
+      return (
+        <div className="cart cart--empty">
+          <h2 className="cart__title">The cart is empty.</h2>
+          <Link to="/shop" className="cart__total-button">Find products</Link>
+        </div>
+      );
     }
     return (
       <div className="cart">
@@ -72,7 +85,7 @@ class Cart extends React.Component {
                     number={index + 1}
                     key={cartItem.product.id}
                     item={cartItem}
-                    changeDiscountAndQuantity={changeDiscountAndQuantity}
+                    changeQuantity={changeQuantity}
                     removeItem={removeItem}
                   />
                 ))}
@@ -86,7 +99,7 @@ class Cart extends React.Component {
                 <span>Sub-total:</span>
                 <span className="cart__total-price--lg">
                   $
-                  {Math.round(subTotal * 100) / 100}
+                  {(data.subTotal).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
                 </span>
               </li>
               <li>
@@ -110,7 +123,7 @@ class Cart extends React.Component {
                 </span>
                 <span className="cart__total-price--lg">
                   $
-                  {Math.round(subTotal * 100) / 100 + shippingCost}
+                  {(data.total).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
                 </span>
               </li>
             </ul>
@@ -126,7 +139,13 @@ export default Cart;
 
 Cart.propTypes = {
   cart: PropTypes.arrayOf(cartItemTypes).isRequired,
-  changeDiscountAndQuantity: PropTypes.func.isRequired,
+  changeQuantity: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,
   selectShipping: PropTypes.func.isRequired,
+  countTotal: PropTypes.func.isRequired,
+  data: PropTypes.shape({
+    shipping: PropTypes.number.isRequired,
+    subTotal: PropTypes.number.isRequired,
+    total: PropTypes.number.isRequired,
+  }).isRequired,
 };

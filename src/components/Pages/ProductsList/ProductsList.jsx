@@ -5,6 +5,7 @@ import Loader from '../../Loader/Loader';
 import ProductPreview from '../../ProductPreview/ProductPreview';
 import './ProductsList.scss';
 import Sorting from '../../Sorting/Sorting';
+import ErrorPage from '../ErrorPage/ErrorPage';
 
 class ProductsList extends React.Component {
   constructor() {
@@ -60,10 +61,14 @@ class ProductsList extends React.Component {
         );
         break;
       case error:
-        content = <div>An error occured, please try again</div>;
+        content = <ErrorPage />;
         break;
       default:
-        content = <Loader />;
+        content = (
+          <div className="products-list__container products-list__container--loader">
+            <Loader />
+          </div>
+        );
     }
     return content;
   }

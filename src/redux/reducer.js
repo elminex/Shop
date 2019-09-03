@@ -6,6 +6,7 @@ export const singleProductSelector = ({ shop }, id) => shop.products.find(
 );
 export const cartSelector = ({ shop }) => shop.cart;
 export const getRequest = ({ shop }) => shop.request;
+export const dataSelector = ({ shop }) => shop.data;
 
 
 /* ACTIONS */
@@ -28,17 +29,17 @@ export const errorRequest = (error) => ({ error, type: ERROR_REQUEST });
 export const RESET_REQUEST = createActionName('RESET_REQUEST');
 export const resetRequest = () => ({ type: RESET_REQUEST });
 
-export const ADD_PRODUCT_TO_CART = createActionName('ADD_PRODUCT_TO_CART');
-export const AddProductToCart = (item, quantity) => ({
+export const ADD_TO_CART = createActionName('ADD_TO_CART');
+export const AddToCart = (item, quantity, discount) => ({
   product: item,
-  type: ADD_PRODUCT_TO_CART,
+  type: ADD_TO_CART,
   quantity,
+  discount,
 });
 
-export const CHANGE_DISCOUNT_AND_QUANTITY = createActionName('CHANGE_DISCOUNT_AND_QUANTITY');
-export const changeDiscountAndQuantity = (discount, quantity, id) => ({
-  type: CHANGE_DISCOUNT_AND_QUANTITY,
-  discount,
+export const CHANGE_QUANTITY = createActionName('CHANGE_QUANTITY');
+export const changeQuantity = (quantity, id) => ({
+  type: CHANGE_QUANTITY,
   quantity,
   id,
 });
@@ -52,6 +53,9 @@ export const selectShippingOption = (option) => ({
   shipping: option,
 });
 
+export const COUNT_TOTAL_PRICE = createActionName('COUNT_TOTAL_PRICE');
+export const countTotalPrice = () => ({ type: COUNT_TOTAL_PRICE });
+
 /* INITIAL STATE */
 
 const initialState = {
@@ -62,7 +66,11 @@ const initialState = {
     success: null,
   },
   cart: [],
-  shipping: '',
+  data: {
+    shipping: 0,
+    subTotal: 0,
+    total: 0,
+  },
 };
 
 /* REDUCER */
@@ -79,16 +87,14 @@ export default function shopReducer(statePart = initialState, action = {}) {
       return { ...statePart, request: { pending: false, error: action.error, success: false } };
     case RESET_REQUEST:
       return { ...statePart, request: { pending: false, error: null, success: null } };
-    case ADD_PRODUCT_TO_CART: {
+    case ADD_TO_CART: {
       if (statePart.cart.some((item) => item.product.id === action.product.id)) {
         return {
           ...statePart,
           cart: statePart.cart.map((cartItem) => {
             if (cartItem.product.id === action.product.id) {
-              cartItem.quantity += parseFloat(action.quantity);
-              cartItem.itemsPrice = (cartItem.product.price
-                - (cartItem.product.price * (cartItem.discount / 100)))
-                * cartItem.quantity;
+              cartItem.quantity += action.quantity;
+              cartItem.itemsPrice = cartItem.product.price * cartItem.quantity;
               return cartItem;
             }
             return cartItem;
@@ -99,23 +105,21 @@ export default function shopReducer(statePart = initialState, action = {}) {
         ...statePart,
         cart: [{
           product: action.product,
-          quantity: parseFloat(action.quantity),
+          quantity: action.quantity,
           discount: 0,
-          itemsPrice: action.product.price,
+          itemsPrice: action.product.price * action.quantity,
         },
         ...statePart.cart,
         ],
       };
     }
-    case CHANGE_DISCOUNT_AND_QUANTITY:
+    case CHANGE_QUANTITY:
       return {
         ...statePart,
         cart: statePart.cart.map((cartItem) => {
           if (cartItem.product.id === action.id) {
-            cartItem.quantity = parseFloat(action.quantity);
-            cartItem.discount = parseFloat(action.discount);
-            cartItem.itemsPrice = (cartItem.product.price
-              - (cartItem.product.price * (action.discount / 100))) * cartItem.quantity;
+            cartItem.quantity = action.quantity;
+            cartItem.itemsPrice = cartItem.product.price * cartItem.quantity;
             return cartItem;
           }
           return cartItem;
@@ -129,7 +133,19 @@ export default function shopReducer(statePart = initialState, action = {}) {
     case SELECT_SHIPPING_OPTION:
       return {
         ...statePart,
-        shipping: action.shipping,
+        data: {
+          ...statePart.data,
+          shipping: action.shipping,
+        },
+      };
+    case COUNT_TOTAL_PRICE:
+      return {
+        ...statePart,
+        data: {
+          ...statePart.data,
+          subTotal: statePart.cart.reduce((a, b) => a + b.itemsPrice, 0),
+          total: statePart.cart.reduce((a, b) => a + b.itemsPrice, 0) + statePart.data.shipping,
+        },
       };
     default:
       return statePart;
@@ -148,4 +164,14 @@ export const loadProductsRequest = () => async (dispatch) => {
   } else {
     dispatch(errorRequest(response.status));
   }
+};
+
+export const AddProductToCart = (product, quantity, discount = 0) => (dispatch) => {
+  dispatch(AddToCart(product, quantity, discount));
+  dispatch(countTotalPrice());
+};
+
+export const changeQuantityAndPrice = (quantity, id) => (dispatch) => {
+  dispatch(changeQuantity(quantity, id));
+  dispatch(countTotalPrice());
 };

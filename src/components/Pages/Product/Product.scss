@@ -56,5 +56,13 @@
   &__button {
     @include button;
     margin-top: 32px;
+    &-disabled {
+      @include button;
+      margin-top: 32px;
+      opacity: .7;
+      &:hover {
+        background-color: $yellow;
+      }
+    }
   }
 }

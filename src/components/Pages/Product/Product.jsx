@@ -43,15 +43,19 @@ const Product = ({ product, request, loadProducts }) => {
               Quantity:
               <input id="quantity" type="number" value={quantity} min="0" max={20} onChange={(e) => handleChange(e)} />
             </label>
-            <Link
-              className="product__button"
-              to={{
-                pathname: `/cart/add/${product.id}`,
-                quantity,
-              }}
-            >
-              Add to Cart
-            </Link>
+            {
+              product.stock === true ? (
+                <Link
+                  className="product__button"
+                  to={{
+                    pathname: `/cart/add/${product.id}`,
+                    quantity,
+                  }}
+                >
+                  Add to Cart
+                </Link>
+              ) : <button type="button" className="product__button-disabled" disabled>Add to Cart</button>
+            }
           </div>
         </div>
       );
