@@ -1,35 +1,42 @@
+@import '../../variables.scss';
 
 .pagination {
   margin: 0 auto;
   text-align: center;
 
   &__list {
+    margin: 0;
+    padding: 0;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     list-style-type: none;
-    font-size: 16px;
 
-    &__item {
-      display: block;
-      width: 20px;
-      height: 20px;
+    &-item {
       margin: 8px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      border-radius: 3px;
-      transition: .2s;
-      color: black;
+    }
+  }
 
-      &:hover {
-        color: red;
-      }
+  &__button {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+    color: $text-black;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: color .2s, background-color .2s;
+    outline: none;
 
-      &--active {
-        color: blue;
-      }
+    &:hover {
+      color: white;
+      background-color: $yellow;
     }
 
+    &--active {
+      color: white;
+      background-color: $yellow;
+    }
+    &--hidden {
+      visibility: hidden;
+    }
   }
 }

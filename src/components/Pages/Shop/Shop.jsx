@@ -14,7 +14,7 @@ class Shop extends React.Component {
     this.state = {
       sorting: 'popular',
       products: [],
-      productsPerPage: 3,
+      productsPerPage: 6,
       visibleProducts: [],
       pages: 1,
       presentPage: 1,
@@ -29,10 +29,8 @@ class Shop extends React.Component {
     await loadProducts();
     const { productsArr } = this.props;
     const productPages = Math.ceil(productsArr.length / this.state.productsPerPage);
-    console.log(productPages);
     this.setState({ products: productsArr, pages: productPages });
     if (this.props.request.success) {
-      console.log(this.props.request);
       this.sortProducts('popular', 'desc');
       this.sliceProducts(1);
     }
@@ -66,7 +64,12 @@ class Shop extends React.Component {
   }
 
   render() {
-    const { sorting, visibleProducts, pages, presentPage } = this.state;
+    const {
+      sorting,
+      visibleProducts,
+      pages,
+      presentPage,
+    } = this.state;
     const { success, error } = this.props.request;
     let content;
     switch (true) {
@@ -76,7 +79,13 @@ class Shop extends React.Component {
             <Sorting sorting={sorting} sortProducts={this.sortProducts} />
             <FilterMenu />
             <ProductsList products={visibleProducts} />
-            <Pagination pages={pages} onPageChange={this.sliceProducts} show={success} presentPage={presentPage} changePage={this.changePage} />
+            <Pagination
+              pages={pages}
+              onPageChange={this.sliceProducts}
+              show={success}
+              presentPage={presentPage}
+              changePage={this.changePage}
+            />
           </div>
         );
         break;
