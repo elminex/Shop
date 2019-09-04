@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import { allProductsSelector, loadProductsRequest, getRequest } from '../../../redux/reducer';
-import ProductsList from './ProductsList';
+import Shop from './Shop';
 
 const mapStateToProps = (state) => ({
-  products: allProductsSelector(state),
+  productsArr: allProductsSelector(state),
   request: getRequest(state),
 });
 
@@ -11,4 +11,4 @@ const mapDispatchToProps = (dispatch) => ({
   loadProducts: () => dispatch(loadProductsRequest()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductsList);
+export default connect(mapStateToProps, mapDispatchToProps)(Shop);

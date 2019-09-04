@@ -14,8 +14,8 @@ export const dataSelector = ({ shop }) => shop.data;
 const reducerName = 'shopReducer';
 const createActionName = (name) => `app/${reducerName}/${name}`;
 
-export const GET__PRODUCTS = createActionName('GET__PRODUCTS');
-export const getProducts = (payload) => ({ payload, type: GET__PRODUCTS });
+export const GET_PRODUCTS = createActionName('GET_PRODUCTS');
+export const getProducts = (payload) => ({ payload, type: GET_PRODUCTS });
 
 export const START_REQUEST = createActionName('START_REQUEST');
 export const startRequest = () => ({ type: START_REQUEST });
@@ -77,7 +77,7 @@ const initialState = {
 
 export default function shopReducer(statePart = initialState, action = {}) {
   switch (action.type) {
-    case GET__PRODUCTS:
+    case GET_PRODUCTS:
       return { ...statePart, products: [...action.payload] };
     case START_REQUEST:
       return { ...statePart, request: { pending: true, error: null, success: null } };

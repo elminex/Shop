@@ -11,7 +11,7 @@ import Contact from './components/Pages/Contact/Contact';
 import Terms from './components/Pages/Terms/Terms';
 import AddToCart from './components/AddToCart/ConnectedAddToCart';
 import Checkout from './components/Pages/Checkout/ConnectedCheckout';
-import Shop from './components/Pages/Shop/Shop';
+import Shop from './components/Pages/Shop/ConnectedShop';
 import PageNotFound from './components/Pages/PageNotFound/PageNotFound';
 
 const App = () => (
