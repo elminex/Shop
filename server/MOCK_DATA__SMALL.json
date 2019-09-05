@@ -1,0 +1,123 @@
+[
+  {
+    "index": 1,
+    "id": "5ccd47e8-559a-40ab-8c7b-1136dfa8bfb4",
+    "name": "Pasta - Cappellini, Dry",
+    "company": "CorVel Corp.",
+    "photo": "http://dummyimage.com/200x160.png/5fa2dd/ffffff",
+    "price": 814.40,
+    "description": "Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat.",
+    "sales": 3,
+    "stock": true,
+    "category": "category1"
+  },
+  {
+    "index": 2,
+    "id": "335dccdb-49e6-4ca4-8d22-49c66ec9e7c4",
+    "name": "Tomatoes - Hot House",
+    "company": "Diodes Incorporated",
+    "photo": "http://dummyimage.com/200x160.png/ff4444/ffffff",
+    "price": 165.04,
+    "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.\n\nVestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.",
+    "sales": 4,
+    "stock": true,
+    "category": "category2"
+
+  },
+  {
+    "index": 3,
+    "id": "8c74e3a6-f5c4-4ad1-9bc3-25d2c9529561",
+    "name": "Olives - Green, Pitted",
+    "company": "Electro Scientific Industries, Inc.",
+    "photo": "http://dummyimage.com/200x160.png/5fa2dd/ffffff",
+    "price": 756.17,
+    "description": "Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.\n\nCurabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.",
+    "sales": 8,
+    "stock": true,
+    "category": "category2"
+  },
+  {
+    "index": 4,
+    "id": "cc2ac955-fff1-41d3-9398-3bf4c9318714",
+    "name": "Filo Dough",
+    "company": "Adaptimmune Therapeutics plc",
+    "photo": "http://dummyimage.com/200x160.png/dddddd/000000",
+    "price": 217.15,
+    "description": "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.",
+    "sales": 12,
+    "stock": true,
+    "category": "category3"
+  },
+  {
+    "index": 5,
+    "id": "d0badb4e-4f50-4fc1-98d7-2548b18a4e1e",
+    "name": "Smoked Paprika",
+    "company": "Commercial Vehicle Group, Inc.",
+    "photo": "http://dummyimage.com/200x160.png/dddddd/000000",
+    "price": 248.39,
+    "description": "Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.",
+    "sales": 1,
+    "stock": true,
+    "category": "category2"
+  },
+  {
+    "index": 6,
+    "id": "9c57491d-9b6e-40ec-b929-3dc6eee7fee4",
+    "name": "Veal Inside - Provimi",
+    "company": "Patriot Transportation Holding, Inc.",
+    "photo": "http://dummyimage.com/200x160.png/5fa2dd/ffffff",
+    "price": 50.70,
+    "description": "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
+    "sales": 2,
+    "stock": true,
+    "category": "category4"
+  },
+  {
+    "index": 7,
+    "id": "b65395ce-76ff-404e-9a6d-08a9fd7f9467",
+    "name": "Coffee - Cafe Moreno",
+    "company": "AllianzGI Convertible & Income Fund",
+    "photo": "http://dummyimage.com/200x160.png/dddddd/000000",
+    "price": 630.20,
+    "description": "Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.",
+    "sales": 22,
+    "stock": true,
+    "category": "category1"
+  },
+  {
+    "index": 8,
+    "id": "8ea461fd-40a6-4328-b40b-e4a908741c3a",
+    "name": "Food Colouring - Red",
+    "company": "Nicholas Financial, Inc.",
+    "photo": "http://dummyimage.com/200x160.png/dddddd/000000",
+    "price": 445.80,
+    "description": "Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.\n\nIn hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.\n\nAliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
+    "sales": 6,
+    "stock": true,
+    "category": "category3"
+  },
+  {
+    "index": 9,
+    "id": "4c38ef64-0854-40a7-9fed-801c2ec0a2bb",
+    "name": "Coffee - Almond Amaretto",
+    "company": "Wintrust Financial Corporation",
+    "photo": "http://dummyimage.com/200x160.png/ff4444/ffffff",
+    "price": 611.29,
+    "description": "Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.",
+    "sales": 12,
+    "stock": false,
+    "category": "category1"
+  },
+  {
+    "index": 10,
+    "id": "cf1c2352-24b2-489f-98d0-79a902744fe1",
+    "name": "Muffin - Mix - Creme Brule 15l",
+    "company": "At Home Group Inc.",
+    "photo": "http://dummyimage.com/200x160.png/dddddd/000000",
+    "price": 171.61,
+    "description": "Fusce consequat. Nulla nisl. Nunc nisl.",
+    "sales": 34,
+    "stock": true,
+    "category": "category3"
+  }
+]

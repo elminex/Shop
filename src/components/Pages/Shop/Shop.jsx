@@ -14,7 +14,7 @@ class Shop extends React.Component {
     this.state = {
       sorting: 'popular',
       products: [],
-      productsPerPage: 6,
+      productsPerPage: 12,
       visibleProducts: [],
       pages: 1,
       presentPage: 1,
@@ -22,14 +22,14 @@ class Shop extends React.Component {
     this.sortProducts = this.sortProducts.bind(this);
     this.sliceProducts = this.sliceProducts.bind(this);
     this.changePage = this.changePage.bind(this);
+    this.changeProductsPerPage = this.changeProductsPerPage.bind(this);
   }
 
   async componentDidMount() {
     const { loadProducts } = this.props;
     await loadProducts();
     const { productsArr } = this.props;
-    const productPages = Math.ceil(productsArr.length / this.state.productsPerPage);
-    this.setState({ products: productsArr, pages: productPages });
+    this.setState({ products: productsArr });
     if (this.props.request.success) {
       this.sortProducts('popular', 'desc');
       this.sliceProducts(1);
@@ -40,7 +40,7 @@ class Shop extends React.Component {
     const { products } = this.state;
     let sorted = [];
     if (sort === 'popular') {
-      sorted = products.sort((a, b) => b.index - a.index);
+      sorted = products.sort((a, b) => b.sales - a.sales);
     } else if (direction === 'asc' || !direction) {
       sorted = products.sort((a, b) => a[sort].toString().localeCompare(b[sort].toString(),
         { ignorePunctuation: true }));
@@ -54,13 +54,18 @@ class Shop extends React.Component {
 
   sliceProducts(page) {
     const { products, productsPerPage } = this.state;
+    const productPages = Math.ceil(products.length / productsPerPage);
     const visible = products.slice((page - 1) * productsPerPage, page * productsPerPage);
-    this.setState({ visibleProducts: visible });
+    this.setState({ visibleProducts: visible, pages: productPages });
   }
 
   changePage(newPage) {
     this.setState({ presentPage: newPage });
     this.sliceProducts(newPage);
+  }
+
+  changeProductsPerPage(value) {
+    this.setState({ productsPerPage: value }, () => this.changePage(1));
   }
 
   render() {
@@ -69,6 +74,7 @@ class Shop extends React.Component {
       visibleProducts,
       pages,
       presentPage,
+      productsPerPage,
     } = this.state;
     const { success, error } = this.props.request;
     let content;
@@ -76,13 +82,17 @@ class Shop extends React.Component {
       case success:
         content = (
           <div>
-            <Sorting sorting={sorting} sortProducts={this.sortProducts} />
+            <Sorting
+              sorting={sorting}
+              sortProducts={this.sortProducts}
+              productsPerPage={productsPerPage}
+              changeProductsPerPage={this.changeProductsPerPage}
+            />
             <FilterMenu />
             <ProductsList products={visibleProducts} />
             <Pagination
               pages={pages}
               onPageChange={this.sliceProducts}
-              show={success}
               presentPage={presentPage}
               changePage={this.changePage}
             />
