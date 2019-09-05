@@ -28,16 +28,17 @@ class Cart extends React.Component {
 
   selectOptionHandle(e) {
     const { selectShipping, countTotal } = this.props;
-    const { selectedOption } = this.state;
-    this.setState({ selectedOption: e.target.value });
-    switch (selectedOption) {
+    switch (e.target.value) {
       case 'economy':
+        this.setState({ selectedOption: e.target.value });
         selectShipping(10);
         break;
       case 'premium':
+        this.setState({ selectedOption: e.target.value });
         selectShipping(20);
         break;
       default:
+        this.setState({ selectedOption: e.target.value });
         selectShipping(30);
         break;
     }

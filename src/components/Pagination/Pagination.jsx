@@ -23,6 +23,9 @@ const Pagination = ({
         if ((presentPage === 1 && page <= presentPage + 4)
         || (presentPage === 2 && page <= presentPage + 3)
         || (presentPage === 3 && page <= presentPage + 2)
+        || (presentPage === pages && page >= presentPage - 6)
+        || (presentPage === pages - 1 && page >= presentPage - 5)
+        || (presentPage === pages - 2 && page >= presentPage - 4)
         || page === 0
         || page === pages - 1
         || (page >= presentPage - 3 && page <= presentPage + 1)) {

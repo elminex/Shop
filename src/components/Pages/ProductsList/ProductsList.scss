@@ -17,12 +17,11 @@
     list-style-type: none;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
   }
 
   &__item {
     width: 30%;
-    padding: 8px;
     border: 1px solid yellow;
   }
 }

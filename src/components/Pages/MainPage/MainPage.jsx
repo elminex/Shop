@@ -33,11 +33,16 @@ class MainPage extends React.Component {
           <div>
             <ul className="main-page__gallery">
               {
-                products.map((elem) => (
-                  <li className="main-page__gallery-item" key={elem.id}>
-                    <ProductGaleryItem elem={elem} />
-                  </li>
-                ))
+                products.map((elem, index) => {
+                  if (index < 10) {
+                    return (
+                      <li className="main-page__gallery-item" key={elem.id}>
+                        <ProductGaleryItem elem={elem} />
+                      </li>
+                    );
+                  }
+                  return '';
+                })
               }
             </ul>
           </div>

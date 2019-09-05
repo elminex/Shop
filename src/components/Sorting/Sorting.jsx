@@ -26,19 +26,23 @@ const Sorting = ({
 
   return (
     <div>
-      <span>Sort by:</span>
-      <select value={sorting} onChange={sortingHandler}>
-        <option value="name asc">Name</option>
-        <option value="price asc">Price ascending</option>
-        <option value="price desc">Price descending</option>
-        <option value="popular desc">Most popular</option>
-      </select>
-      <span>Products per page:</span>
-      <select value={productsPerPage} onChange={productsPerPageHandler}>
-        <option value="12">12</option>
-        <option value="24">24</option>
-        <option value="36">36</option>
-      </select>
+      <label htmlFor="sort">
+        Sort by:
+        <select id="sort" value={sorting} onChange={sortingHandler}>
+          <option value="name asc">Name</option>
+          <option value="price asc">Price ascending</option>
+          <option value="price desc">Price descending</option>
+          <option value="popular desc">Most popular</option>
+        </select>
+      </label>
+      <label htmlFor="productsPerPage">
+        Products per page:
+        <select id="productsPerPage" value={productsPerPage} onChange={productsPerPageHandler}>
+          <option value="12">12</option>
+          <option value="24">24</option>
+          <option value="36">36</option>
+        </select>
+      </label>
     </div>
   );
 };

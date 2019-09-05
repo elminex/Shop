@@ -1,0 +1,43 @@
+@import '../../variables.scss';
+
+.filter-menu {
+  &__container {
+    padding: 32px;
+    background-color: $background-grey;
+    font-size: 16px;
+  }
+
+  &__title {
+    color: $text-black;
+    margin-top: 0;
+  }
+
+  &__list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  &__item {
+    width: 100%;
+  }
+
+  &__button {
+    width: 100%;
+    padding: 8px 0;
+    margin-bottom: 8px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    text-transform: capitalize;
+    cursor: pointer;
+    color: $text-grey;
+    &:hover {
+      color: $yellow;
+    }
+    &--active {
+      scale: 1.1;
+      color: $yellow;
+    }
+  }
+}

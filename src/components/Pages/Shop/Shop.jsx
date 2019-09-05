@@ -7,29 +7,33 @@ import Sorting from '../../Sorting/Sorting';
 import ErrorPage from '../ErrorPage/ErrorPage';
 import Loader from '../../Loader/Loader';
 import Pagination from '../../Pagination/Pagination';
+import './Shop.scss';
 
 class Shop extends React.Component {
   constructor() {
     super();
     this.state = {
-      sorting: 'popular',
+      sorting: 'popular desc',
       products: [],
       productsPerPage: 12,
       visibleProducts: [],
       pages: 1,
       presentPage: 1,
+      filteredProducts: [],
+      category: '',
     };
     this.sortProducts = this.sortProducts.bind(this);
     this.sliceProducts = this.sliceProducts.bind(this);
     this.changePage = this.changePage.bind(this);
     this.changeProductsPerPage = this.changeProductsPerPage.bind(this);
+    this.categorySelect = this.categorySelect.bind(this);
   }
 
   async componentDidMount() {
     const { loadProducts } = this.props;
     await loadProducts();
     const { productsArr } = this.props;
-    this.setState({ products: productsArr });
+    this.setState({ products: productsArr, filteredProducts: productsArr });
     if (this.props.request.success) {
       this.sortProducts('popular', 'desc');
       this.sliceProducts(1);
@@ -37,25 +41,25 @@ class Shop extends React.Component {
   }
 
   sortProducts(sort, direction) {
-    const { products } = this.state;
+    const { filteredProducts } = this.state;
     let sorted = [];
     if (sort === 'popular') {
-      sorted = products.sort((a, b) => b.sales - a.sales);
+      sorted = filteredProducts.sort((a, b) => b.sales - a.sales);
     } else if (direction === 'asc' || !direction) {
-      sorted = products.sort((a, b) => a[sort].toString().localeCompare(b[sort].toString(),
+      sorted = filteredProducts.sort((a, b) => a[sort].toString().localeCompare(b[sort].toString(),
         { ignorePunctuation: true }));
     } else {
-      sorted = products.sort((a, b) => b[sort].toString().localeCompare(a[sort].toString(),
+      sorted = filteredProducts.sort((a, b) => b[sort].toString().localeCompare(a[sort].toString(),
         { ignorePunctuation: true }));
     }
     this.changePage(1);
-    this.setState({ sorting: `${sort} ${direction}`, products: sorted });
+    this.setState({ sorting: `${sort} ${direction}`, filteredProducts: sorted });
   }
 
   sliceProducts(page) {
-    const { products, productsPerPage } = this.state;
-    const productPages = Math.ceil(products.length / productsPerPage);
-    const visible = products.slice((page - 1) * productsPerPage, page * productsPerPage);
+    const { filteredProducts, productsPerPage } = this.state;
+    const productPages = Math.ceil(filteredProducts.length / productsPerPage);
+    const visible = filteredProducts.slice((page - 1) * productsPerPage, page * productsPerPage);
     this.setState({ visibleProducts: visible, pages: productPages });
   }
 
@@ -68,6 +72,16 @@ class Shop extends React.Component {
     this.setState({ productsPerPage: value }, () => this.changePage(1));
   }
 
+  categorySelect(category) {
+    const { products, sorting } = this.state;
+    const filtered = products.filter((item) => item.category === category);
+    const splitSorting = sorting.split(' ');
+    this.setState({ filteredProducts: filtered, category }, () => {
+      this.sortProducts(splitSorting[0], splitSorting[1]);
+      this.changePage(1);
+    });
+  }
+
   render() {
     const {
       sorting,
@@ -75,21 +89,25 @@ class Shop extends React.Component {
       pages,
       presentPage,
       productsPerPage,
+      products,
+      category,
     } = this.state;
     const { success, error } = this.props.request;
     let content;
     switch (true) {
       case success:
         content = (
-          <div>
+          <div className="shop__container">
             <Sorting
               sorting={sorting}
               sortProducts={this.sortProducts}
               productsPerPage={productsPerPage}
               changeProductsPerPage={this.changeProductsPerPage}
             />
-            <FilterMenu />
-            <ProductsList products={visibleProducts} />
+            <div className="shop__utilities">
+              <FilterMenu category={category} categorySelect={this.categorySelect} products={products} />
+              <ProductsList products={visibleProducts} />
+            </div>
             <Pagination
               pages={pages}
               onPageChange={this.sliceProducts}
