@@ -1,0 +1,27 @@
+@import '../../variables.scss';
+
+.sorting {
+  &__container {
+    padding: 16px 0;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__text {
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  &__label {
+    background-color: $background-grey;
+    font-size: 14px;
+    padding: 20px;
+    border-radius: $br-sm;
+
+    &:first-of-type {
+      margin-right: 8px;
+    }
+  }
+}

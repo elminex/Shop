@@ -1,6 +1,10 @@
 @import '../../../variables.scss';
 
 .main-page {
+  &__container {
+    width: 100%;
+  }
+
   &__gallery {
     padding: 0;
     margin: 0;

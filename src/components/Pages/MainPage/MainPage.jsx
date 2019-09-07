@@ -30,7 +30,7 @@ class MainPage extends React.Component {
     switch (true) {
       case success:
         content = (
-          <div>
+          <div className="main-page__container">
             <ul className="main-page__gallery">
               {
                 products.map((elem, index) => {

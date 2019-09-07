@@ -1,11 +1,11 @@
 @import '../../variables.scss';
 
 .header {
-  width: 300px;
-  padding: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 
   &__logo {
-    margin-bottom: 50px;
     font-size: 2rem;
     line-height: 2rem;
   }
@@ -16,8 +16,9 @@
   }
 
   &__nav-item {
-    padding: 20px 0;
+    padding: 20px 0 20px 60px;
     font-size: 14px;
+    display: inline-block;
   }
 
   &__link {
@@ -30,8 +31,9 @@
     &:after {
       content: "";
       position: absolute;
-      top: calc(50% - 2px);
-      left: -60px;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX( -50% );
       width: 0;
       height: 4px;
       background-color: $yellow;
@@ -45,7 +47,7 @@
     &--active {
 
       &:after {
-        width: 35px;
+        width: 56px;
 
       }
     }

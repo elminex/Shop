@@ -1,9 +1,14 @@
 $yellow: #FBB70F;
 $background: #fff;
 $background-grey: #f5f7fa;
+$background-black: #252525;
 $text-grey: #6B6B6B;
 $text-black: #131212;
+$text-white: #fff;
 $green: #1FD34A;
+
+$br-sm: 3px;
+$br-lg: 6px;
 
 @mixin yellow-line {
   height: 4px;

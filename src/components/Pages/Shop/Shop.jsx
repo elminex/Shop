@@ -20,13 +20,13 @@ class Shop extends React.Component {
       pages: 1,
       presentPage: 1,
       filteredProducts: [],
-      category: '',
+      filter: '',
     };
     this.sortProducts = this.sortProducts.bind(this);
     this.sliceProducts = this.sliceProducts.bind(this);
     this.changePage = this.changePage.bind(this);
     this.changeProductsPerPage = this.changeProductsPerPage.bind(this);
-    this.categorySelect = this.categorySelect.bind(this);
+    this.filterHandler = this.filterHandler.bind(this);
   }
 
   async componentDidMount() {
@@ -72,11 +72,19 @@ class Shop extends React.Component {
     this.setState({ productsPerPage: value }, () => this.changePage(1));
   }
 
-  categorySelect(category) {
+  filterHandler(category, brand) {
     const { products, sorting } = this.state;
-    const filtered = products.filter((item) => item.category === category);
+    let filtered;
+    let filter;
+    if (!brand) {
+      filtered = products.filter((item) => item.category === category);
+      filter = category;
+    } else if (!category) {
+      filtered = products.filter((item) => item.company === brand);
+      filter = brand;
+    }
     const splitSorting = sorting.split(' ');
-    this.setState({ filteredProducts: filtered, category }, () => {
+    this.setState({ filteredProducts: filtered, filter }, () => {
       this.sortProducts(splitSorting[0], splitSorting[1]);
       this.changePage(1);
     });
@@ -90,7 +98,8 @@ class Shop extends React.Component {
       presentPage,
       productsPerPage,
       products,
-      category,
+      filter,
+      filteredProducts,
     } = this.state;
     const { success, error } = this.props.request;
     let content;
@@ -98,22 +107,24 @@ class Shop extends React.Component {
       case success:
         content = (
           <div className="shop__container">
-            <Sorting
-              sorting={sorting}
-              sortProducts={this.sortProducts}
-              productsPerPage={productsPerPage}
-              changeProductsPerPage={this.changeProductsPerPage}
-            />
-            <div className="shop__utilities">
-              <FilterMenu category={category} categorySelect={this.categorySelect} products={products} />
+            <FilterMenu filter={filter} filterHandler={this.filterHandler} products={products} />
+            <div className="shop__right-panel">
+              <Sorting
+                filteredProducts={filteredProducts}
+                presentPage={presentPage}
+                sorting={sorting}
+                sortProducts={this.sortProducts}
+                productsPerPage={productsPerPage}
+                changeProductsPerPage={this.changeProductsPerPage}
+              />
               <ProductsList products={visibleProducts} />
+              <Pagination
+                pages={pages}
+                onPageChange={this.sliceProducts}
+                presentPage={presentPage}
+                changePage={this.changePage}
+              />
             </div>
-            <Pagination
-              pages={pages}
-              onPageChange={this.sliceProducts}
-              presentPage={presentPage}
-              changePage={this.changePage}
-            />
           </div>
         );
         break;

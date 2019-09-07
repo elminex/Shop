@@ -1,26 +1,35 @@
+@import '../../variables.scss';
+
 .product-preview {
-  background-color: white;
-  padding: 12px;
+  padding: 24px;
   text-align: center;
+
   &__link {
     font-size: 20px;
+    text-decoration: none;
+    color: $text-black;
   }
+
   &__mid {
     margin-top: 12px;
     display: flex;
+
     &-right {
       position: relative;
       width: 50%;
     }
   }
+
   &__image {
     width: 100%;
     height: 100%;
     object-fit: cover;
+
     &-wrapper {
       width: 50%;
     }
   }
+
   &__company {
     position: absolute;
     right: 0;
@@ -28,12 +37,15 @@
     font-size: 14px;
     text-align: right;
   }
+
   &__price {
+    color: $yellow;
     font-size: 24px;
     position: absolute;
     right: 0;
     top: 20%;
   }
+
   &__description {
     text-indent: 1rem;
     text-align: justify;

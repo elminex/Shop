@@ -1,7 +1,10 @@
+@import '../../../variables.scss';
+
 .products-list {
   &__container {
     text-align: center;
     padding-top: 60px;
+
     &--loader {
       padding: 0;
       height: 100%;
@@ -22,6 +25,8 @@
 
   &__item {
     width: 30%;
-    border: 1px solid yellow;
+    margin-bottom: 12px;
+    background-color: $background-grey;
+    border-radius: $br-sm;
   }
 }

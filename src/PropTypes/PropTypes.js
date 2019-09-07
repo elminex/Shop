@@ -14,7 +14,7 @@ export const productTypes = PropTypes.shape({
 
 export const cartItemTypes = PropTypes.shape({
   product: productTypes.isRequired,
-  quantity: PropTypes.string.isRequired,
+  quantity: PropTypes.number.isRequired,
   discount: PropTypes.number.isRequired,
   itemsPrice: PropTypes.number.isRequired,
 });

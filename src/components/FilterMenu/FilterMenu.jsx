@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import { productTypes } from '../../PropTypes/PropTypes';
 import './FilterMenu.scss';
 
-const FilterMenu = ({ categorySelect, products, category }) => {
+const FilterMenu = ({ filterHandler, filter, products }) => {
   const categoryHandler = (e) => {
-    categorySelect(e.currentTarget.value);
+    filterHandler(e.currentTarget.value, undefined);
+  };
+  const brandHandler = (e) => {
+    filterHandler(undefined, e.currentTarget.value);
   };
   const categories = Array.from(new Set(products.map((item) => item.category)));
   const brands = Array.from(new Set(products.map((item) => item.company)));
@@ -15,7 +18,7 @@ const FilterMenu = ({ categorySelect, products, category }) => {
       <ul className="filter-menu__list">
         {categories.map((item, index) => (
           <li key={index} className="filter-menu__item">
-            <button className={category === item ? 'filter-menu__button filter-menu__button--active' : 'filter-menu__button'} type="button" value={item} onClick={categoryHandler}>{item}</button>
+            <button className={filter === item ? 'filter-menu__button filter-menu__button--active' : 'filter-menu__button'} type="button" value={item} onClick={categoryHandler}>{item}</button>
           </li>
         ))}
       </ul>
@@ -23,7 +26,7 @@ const FilterMenu = ({ categorySelect, products, category }) => {
       <ul className="filter-menu__list">
         {brands.map((item, index) => (
           <li key={index} className="filter-menu__item">
-            <button className={category === item ? 'filter-menu__button filter-menu__button--active' : 'filter-menu__button'} type="button" value={item} onClick={categoryHandler}>{item}</button>
+            <button className={filter === item ? 'filter-menu__button filter-menu__button--active' : 'filter-menu__button'} type="button" value={item} onClick={brandHandler}>{item}</button>
           </li>
         ))}
       </ul>
@@ -33,7 +36,7 @@ const FilterMenu = ({ categorySelect, products, category }) => {
 export default FilterMenu;
 
 FilterMenu.propTypes = {
-  categorySelect: PropTypes.func.isRequired,
+  filterHandler: PropTypes.func.isRequired,
   products: PropTypes.arrayOf(productTypes.isRequired).isRequired,
-  category: PropTypes.string.isRequired,
+  filter: PropTypes.string.isRequired,
 };
