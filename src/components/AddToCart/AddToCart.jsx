@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { productTypes } from '../../PropTypes/PropTypes';
-import ErrorPage from '../Pages/ErrorPage/ErrorPage';
+import ErrorPage from '../../Pages/ErrorPage/ErrorPage';
 import './AddToCart.scss';
 
 const AddToCart = ({ product, addToCart, location }) => {

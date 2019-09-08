@@ -1,0 +1,70 @@
+@import '../../variables.scss';
+
+.product {
+  &__container {
+    width: 100%;
+    display: flex;
+    padding: 32px 32px 0 ;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    &-container {
+      flex: 3;
+      max-height: 500px;
+    }
+  }
+
+  &__info {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    padding: 0 16px;
+  }
+
+  &__line {
+    @include yellow-line;
+  }
+
+  &__in-stock {
+    margin: 8px 0 16px;
+  }
+
+  &__name {
+    font-size: 20px;
+    color: $text-black;
+  }
+
+  &__price {
+    font-size: 24px;
+    color: $yellow;
+    margin-bottom: 8px;
+  }
+
+  &__description {
+    font-size: 16px;
+    line-height: 2;
+    color: $text-grey;
+  }
+
+  &__producer {
+    text-align: right;
+    color: $text-grey;
+  }
+
+  &__button {
+    @include button;
+    margin-top: 32px;
+    &-disabled {
+      @include button;
+      margin-top: 32px;
+      opacity: .7;
+      &:hover {
+        background-color: $yellow;
+      }
+    }
+  }
+}

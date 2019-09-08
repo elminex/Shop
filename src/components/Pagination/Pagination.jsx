@@ -19,8 +19,8 @@ const Pagination = ({
           &lt;
         </button>
       </li>
-      {[...Array(pages)].map((el, page) => {
-        if ((presentPage === 1 && page <= presentPage + 4)
+      {[...Array(pages)].map((el, page) => (
+        ((presentPage === 1 && page <= presentPage + 4)
         || (presentPage === 2 && page <= presentPage + 3)
         || (presentPage === 3 && page <= presentPage + 2)
         || (presentPage === pages && page >= presentPage - 6)
@@ -28,8 +28,8 @@ const Pagination = ({
         || (presentPage === pages - 2 && page >= presentPage - 4)
         || page === 0
         || page === pages - 1
-        || (page >= presentPage - 3 && page <= presentPage + 1)) {
-          return (
+        || (page >= presentPage - 3 && page <= presentPage + 1))
+          ? (
             <li
               key={++page}
               className="pagination__list-item"
@@ -42,10 +42,8 @@ const Pagination = ({
                 {page}
               </button>
             </li>
-          );
-        }
-        return '';
-      })}
+          ) : ''
+      ))}
       <li className="pagination__list-item">
         <button
           className={`pagination__button ${(presentPage === pages && pages !== 0) ? 'pagination__button--hidden' : ''}`}

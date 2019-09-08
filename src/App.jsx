@@ -13,6 +13,7 @@ import AddToCart from './components/AddToCart/ConnectedAddToCart';
 import Checkout from './components/Pages/Checkout/ConnectedCheckout';
 import Shop from './components/Pages/Shop/ConnectedShop';
 import PageNotFound from './components/Pages/PageNotFound/PageNotFound';
+import SearchPage from './components/Pages/SearchPage/ConnectedSearchPage';
 
 const App = () => (
   <MainLayout>
@@ -26,6 +27,7 @@ const App = () => (
       <Route exact path="/contact" component={Contact} />
       <Route exact path="/terms" component={Terms} />
       <Route exact path="/cart/checkout" component={Checkout} />
+      <Route exact path="/search" component={SearchPage} />
       <Route component={PageNotFound} />
     </Switch>
   </MainLayout>

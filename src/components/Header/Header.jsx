@@ -22,6 +22,9 @@ const Header = () => (
         <li className="header__nav-item">
           <NavLink className="header__link" activeClassName="header__link--active" to="/cart">Cart</NavLink>
         </li>
+        <li className="header__nav-item">
+          <NavLink className="header__link" activeClassName="header__link--active" to="/search">Search</NavLink>
+        </li>
       </ul>
     </nav>
   </header>

@@ -14,7 +14,7 @@ const FilterMenu = ({ filterHandler, filter, products }) => {
   const brands = Array.from(new Set(products.map((item) => item.company)));
   return (
     <div className="filter-menu__container">
-      <h3 className="filter-menu__title">Categories</h3>
+      <h2 className="filter-menu__title">Categories</h2>
       <ul className="filter-menu__list">
         {categories.map((item, index) => (
           <li key={index} className="filter-menu__item">
@@ -22,7 +22,7 @@ const FilterMenu = ({ filterHandler, filter, products }) => {
           </li>
         ))}
       </ul>
-      <h3 className="filter-menu__title">Brand</h3>
+      <h2 className="filter-menu__title">Brand</h2>
       <ul className="filter-menu__list">
         {brands.map((item, index) => (
           <li key={index} className="filter-menu__item">

@@ -1,12 +1,14 @@
 @import '../../variables.scss';
 
 .product-preview {
+  display: block;
   padding: 24px;
   text-align: center;
+  text-decoration: none;
+  color: $text-black;
 
-  &__link {
+  &__title {
     font-size: 20px;
-    text-decoration: none;
     color: $text-black;
   }
 

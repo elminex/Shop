@@ -1,6 +1,7 @@
 import React from 'react';
 import Proptypes from 'prop-types';
 import './Sorting.scss';
+import { productTypes } from '../../PropTypes/PropTypes';
 
 const Sorting = ({
   sorting, sortProducts, productsPerPage, changeProductsPerPage, presentPage, filteredProducts,
@@ -26,7 +27,14 @@ const Sorting = ({
   };
   return (
     <div className="sorting__container">
-      <p className="sorting__text">Showing {presentPage === 1 ? 1 : ((presentPage - 1) * productsPerPage) + 1} - {presentPage * productsPerPage} of {filteredProducts.length}</p>
+      <p className="sorting__text">
+        {'Showing '}
+        {presentPage === 1 ? 1 : ((presentPage - 1) * productsPerPage) + 1}
+        {' - '}
+        {presentPage * productsPerPage}
+        {' of '}
+        {filteredProducts.length}
+      </p>
       <div>
         <label className="sorting__label" htmlFor="sort">
           Sort by:
@@ -56,4 +64,6 @@ Sorting.propTypes = {
   sortProducts: Proptypes.func.isRequired,
   productsPerPage: Proptypes.number.isRequired,
   changeProductsPerPage: Proptypes.func.isRequired,
+  presentPage: Proptypes.number.isRequired,
+  filteredProducts: Proptypes.arrayOf(productTypes).isRequired,
 };

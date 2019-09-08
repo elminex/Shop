@@ -16,8 +16,8 @@ const ProductPreview = ({ elem }) => {
   }
 
   return (
-    <div className="product-preview">
-      <Link className="product-preview__link" to={`/product/${elem.id}`}>{elem.name}</Link>
+    <Link className="product-preview" to={`/product/${elem.id}`}>
+      <h3 className="product-preview__title">{elem.name}</h3>
       <div className="product-preview__mid">
         <div className="product-preview__image-wrapper">
           <img className="product-preview__image" src={elem.photo} alt={`${elem.name}`} />
@@ -35,7 +35,7 @@ const ProductPreview = ({ elem }) => {
         </div>
       </div>
       <p className="product-preview__description">{cutText(elem.description)}</p>
-    </div>
+    </Link>
   );
 };
 

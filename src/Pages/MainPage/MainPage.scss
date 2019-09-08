@@ -1,0 +1,78 @@
+@import '../../variables.scss';
+
+.main-page {
+  &__container {
+    width: 100%;
+  }
+
+  &__gallery {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    columns: 200px 2;
+    column-gap: 0;
+
+    &-item {
+      break-inside: avoid;
+      height: 300px;
+
+      &:first-of-type,
+      &:last-of-type {
+        height: 350px;
+      }
+    }
+  }
+
+  &__product {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    display: block;
+
+    &:after {
+      position: absolute;
+      content: '';
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+
+
+    &-name {
+      margin: 0;
+      font-size: 24px;
+      color: $text-black;
+    }
+
+    &-price {
+      color: $text-grey;
+      margin: 16px 0;
+    }
+
+    &-overlay {
+      position: absolute;
+      top: 40px;
+      left: 40px;
+      z-index: 10;
+    }
+
+    &-line {
+      height: 4px;
+      width: 70px;
+      background-color: $yellow;
+    }
+
+    &:hover:after {
+      background-color: rgba(60, 60, 60, .5);
+    }
+
+    &:hover &-name,
+    &:hover &-price {
+      color: white;
+    }
+  }
+}

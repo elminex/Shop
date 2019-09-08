@@ -24,6 +24,9 @@ const Footer = () => (
         <li className="footer__nav-item">
           <NavLink className="footer__link" activeClassName="footer__link--active" to="/cart">Cart</NavLink>
         </li>
+        <li className="footer__nav-item">
+          <NavLink className="footer__link" activeClassName="footer__link--active" to="/search">Search</NavLink>
+        </li>
       </ul>
     </nav>
   </footer>
