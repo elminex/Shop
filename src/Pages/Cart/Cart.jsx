@@ -64,6 +64,8 @@ class Cart extends React.Component {
         </div>
       );
     }
+    const priceFormat = (price) => (price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
+
     return (
       <div className="cart">
         <h2 className="cart__title">Shopping cart</h2>
@@ -100,7 +102,7 @@ class Cart extends React.Component {
                 <span>Sub-total:</span>
                 <span className="cart__total-price--lg">
                   $
-                  {(data.subTotal).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+                  {priceFormat(data.subTotal)}
                 </span>
               </li>
               <li>
@@ -124,7 +126,7 @@ class Cart extends React.Component {
                 </span>
                 <span className="cart__total-price--lg">
                   $
-                  {(data.total).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')}
+                  {priceFormat(data.total)}
                 </span>
               </li>
             </ul>

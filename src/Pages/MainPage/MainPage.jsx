@@ -16,19 +16,20 @@ class MainPage extends React.Component {
   async componentDidMount() {
     const { loadProducts, request } = this.props;
     await loadProducts();
-    this.setState({ products: this.props.products });
+    const { products } = this.props;
+    this.setState({ products });
     if (request.success) {
-      const sorted = this.state.products.sort((a, b) => b.sales - a.sales);
+      const sorted = products.sort((a, b) => b.sales - a.sales);
       this.setState({ products: sorted });
     }
   }
 
   render() {
     const { products } = this.state;
-    const { success, error } = this.props.request;
+    const { request } = this.props;
     let content;
     switch (true) {
-      case success:
+      case request.success:
         content = (
           <div className="main-page__container">
             <ul className="main-page__gallery">
@@ -43,7 +44,7 @@ class MainPage extends React.Component {
           </div>
         );
         break;
-      case error:
+      case request.error:
         content = <div>An error occured, please try again</div>;
         break;
       default:

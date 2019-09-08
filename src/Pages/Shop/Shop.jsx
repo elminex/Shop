@@ -32,9 +32,9 @@ class Shop extends React.Component {
   async componentDidMount() {
     const { loadProducts } = this.props;
     await loadProducts();
-    const { productsArr } = this.props;
+    const { productsArr, request } = this.props;
     this.setState({ products: productsArr, filteredProducts: productsArr });
-    if (this.props.request.success) {
+    if (request.success) {
       this.sortProducts('popular', 'desc');
       this.sliceProducts(1);
     }
@@ -101,10 +101,10 @@ class Shop extends React.Component {
       filter,
       filteredProducts,
     } = this.state;
-    const { success, error } = this.props.request;
+    const { request } = this.props;
     let content;
     switch (true) {
-      case success:
+      case request.success:
         content = (
           <div className="shop__container">
             <FilterMenu filter={filter} filterHandler={this.filterHandler} products={products} />
@@ -128,7 +128,7 @@ class Shop extends React.Component {
           </div>
         );
         break;
-      case error:
+      case request.error:
         content = <ErrorPage />;
         break;
       default:
