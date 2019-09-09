@@ -26,7 +26,7 @@ const CartItem = ({
           type="number"
           value={item.quantity}
           onChange={(e) => changeQuantity(
-            e.target.value,
+            parseInt(e.target.value, 10),
             item.product.id,
           )}
         />

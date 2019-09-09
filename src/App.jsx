@@ -2,18 +2,18 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
 import './App.scss';
-import MainLayout from './components/Pages/MainLayout/MainLayout';
-import MainPage from './components/Pages/MainPage/ConnectedMainPage';
-import Product from './components/Pages/Product/ConnectedProduct';
-import Cart from './components/Pages/Cart/ConnectedCart';
-import Faq from './components/Pages/Faq/Faq';
-import Contact from './components/Pages/Contact/Contact';
-import Terms from './components/Pages/Terms/Terms';
+import MainLayout from './Pages/MainLayout/MainLayout';
+import MainPage from './Pages/MainPage/ConnectedMainPage';
+import Product from './Pages/Product/ConnectedProduct';
+import Cart from './Pages/Cart/ConnectedCart';
+import Faq from './Pages/Faq/Faq';
+import Contact from './Pages/Contact/Contact';
+import Terms from './Pages/Terms/Terms';
 import AddToCart from './components/AddToCart/ConnectedAddToCart';
-import Checkout from './components/Pages/Checkout/ConnectedCheckout';
-import Shop from './components/Pages/Shop/ConnectedShop';
-import PageNotFound from './components/Pages/PageNotFound/PageNotFound';
-import SearchPage from './components/Pages/SearchPage/ConnectedSearchPage';
+import Checkout from './Pages/Checkout/ConnectedCheckout';
+import Shop from './Pages/Shop/ConnectedShop';
+import PageNotFound from './Pages/PageNotFound/PageNotFound';
+import SearchPage from './Pages/SearchPage/ConnectedSearchPage';
 
 const App = () => (
   <MainLayout>

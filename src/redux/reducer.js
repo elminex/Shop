@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* SELECTORS */
 
 export const allProductsSelector = ({ shop }) => shop.products;

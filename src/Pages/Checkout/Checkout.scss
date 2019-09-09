@@ -2,9 +2,18 @@
 
 .checkout {
   &__container {
-    padding-top: 60px;
+    padding: 60px 32px 0;
     width: 100%;
     height: 100%;
+  }
+
+  &__row {
+    width: 100%;
+    display: flex;
+
+    & .checkout__form-field:first-child {
+      margin-right: 8px;
+    }
   }
 
   &__title {
@@ -15,7 +24,7 @@
     display: flex;
     flex-direction: column;
     flex: 3;
-    padding: 0 24px;
+    padding-right: 24px;
   }
 
   &__form {
@@ -27,10 +36,14 @@
       padding: 20px;
       border: none;
       margin-bottom: 12px;
+      flex: 1;
     }
 
-    textarea {
+    &-textarea {
       margin-bottom: 0;
+      background-color: $background-grey;
+      padding: 20px;
+      border: none;
     }
 
     &-button {
@@ -40,7 +53,25 @@
 
   &__cart-items {
     flex: 2;
-    text-align: center;
     background-color: $background-grey;
+    padding: 16px;
+  }
+
+  &__cart-list {
+    padding: 0;
+    color: $text-grey;
+
+    li {
+      display: flex;
+      justify-content: space-between;
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      margin-bottom: 16px;
+    }
+  }
+
+  &__cart-quantity {
+    margin: 0 8px;
   }
 }
