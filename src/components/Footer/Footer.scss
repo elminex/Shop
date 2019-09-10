@@ -1,43 +1,92 @@
 @import '../../variables.scss';
+
 .footer {
   height: 100%;
   width: 100%;
   background-color: $background-black;
-  padding: 80px 0;
+  padding: 50px 12px;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+
+  &__left {
+    flex: 3;
+    text-align: center;
+  }
+
+  &__nav {
+    display: none;
+    flex: 5;
+  }
 
   &__logo {
     color: $text-white;
     font-size: 3rem;
+    margin-bottom: 20px;
   }
+}
 
-  &__nav-list {
-    margin: 0;
-    list-style-type: none;
-    padding: 0;
-  }
+@media (min-width: 576px) {
+  .footer {
+    padding: 50px 12px;
+    align-items: center;
+    justify-content: space-around;
 
-  &__nav-item {
-    padding: 10px 30px;
-    font-size: 14px;
-    display: inline-block;
-  }
-
-  &__link {
-    position: relative;
-    text-decoration: none;
-    color: $text-white;
-    text-transform: uppercase;
-    transition: color .2s;
-
-    &:hover {
-      color: $yellow;
+    &__nav {
+      display: block;
     }
 
-    &--active {
-      color: $yellow;
+    &__logo {
+      color: $text-white;
+      font-size: 3rem;
+    }
+
+    &__nav-list {
+      margin: 0;
+      list-style-type: none;
+      padding: 0;
+      columns: 2;
+    }
+
+    &__nav-item {
+      padding: 12px 20px;
+      font-size: 14px;
+    }
+
+    &__link {
+      position: relative;
+      text-decoration: none;
+      color: $text-white;
+      text-transform: uppercase;
+      transition: color .2s;
+
+      &:hover {
+        color: $yellow;
+      }
+
+      &--active {
+        color: $yellow;
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .footer {
+    padding: 80px 50px;
+
+    &__left {
+      flex: 1;
+    }
+    &__nav {
+      flex: 3;
+      text-align: center;
+    }
+
+    &__nav-list {
+      columns: auto;
+    }
+
+    &__nav-item {
+      display: inline-block;
     }
   }
 }

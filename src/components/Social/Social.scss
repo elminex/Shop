@@ -1,0 +1,30 @@
+@import '../../variables.scss';
+
+.social {
+  &__container--header {
+    background-color: $background-grey;
+    text-align:center;
+    padding: 32px 0;
+    .social__link {
+      color: black;
+    }
+  }
+  &__list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  &__item {
+    display: inline-block;
+  }
+  &__link {
+    font-size:24px;
+    color: white;
+    padding: 16px;
+  }
+}
+@media (min-width: 992px) {
+  .social__container--header {
+    display: none;
+  }
+}

@@ -33,7 +33,7 @@ const CartTable = ({ cart, changeQuantity, removeItem }) => (
 export default CartTable;
 
 CartTable.propTypes = {
-  cart: cartItemTypes.isRequired,
+  cart: PropTypes.arrayOf(cartItemTypes).isRequired,
   changeQuantity: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,
 };

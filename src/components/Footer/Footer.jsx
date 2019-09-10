@@ -1,11 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Footer.scss';
+import Social from '../Social/Social';
 
 const Footer = () => (
   <footer className="footer">
-    <div className="footer__logo">
-      LOGO
+    <div className="footer__left">
+      <div className="footer__logo">
+        LOGO
+      </div>
+      <Social />
     </div>
     <nav className="footer__nav">
       <ul className="footer__nav-list">
@@ -29,6 +33,7 @@ const Footer = () => (
         </li>
       </ul>
     </nav>
+
   </footer>
 );
 

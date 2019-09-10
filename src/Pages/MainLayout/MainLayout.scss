@@ -15,5 +15,11 @@
   margin-bottom: 32px;
   height: 100%;
   min-height: calc(100vh - 170px);
+  padding: 12px;
+}
 
+@media (min-width: 576px) {
+  .Content-container {
+    padding: 0;
+  }
 }
