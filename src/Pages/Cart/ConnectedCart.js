@@ -6,6 +6,7 @@ import {
   removeFromCart,
   selectShippingOption,
   countTotalPrice,
+  setDiscount,
 } from '../../redux/reducer';
 import Cart from './Cart';
 
@@ -24,6 +25,7 @@ const mapDispatchToProps = (dispatch) => ({
   )),
   removeItem: (itemId) => dispatch(removeFromCart(itemId)),
   selectShipping: (type) => dispatch(selectShippingOption(type)),
+  setDiscount: (number) => dispatch(setDiscount(number)),
   countTotal: () => dispatch(countTotalPrice()),
 });
 

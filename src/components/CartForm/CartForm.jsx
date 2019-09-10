@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const CartForm = ({
-  formHandle, selectOptionHandle, data, selectedOption,
+  formHandle, selectOptionHandle, data, selectedOption, handleDiscount,
 }) => {
   const priceFormat = (price) => (price.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'));
   return (
@@ -31,6 +31,12 @@ const CartForm = ({
             <input id="superPremium" name="shipping" type="radio" value="superPremium" checked={selectedOption === 'superPremium'} onChange={selectOptionHandle} />
           </label>
         </li>
+        <li>
+          <label htmlFor="discount">
+            {'Discount code:'}
+            <input type="text" id="discount" onChange={(e) => handleDiscount(e)} placeholder="Enter code" />
+          </label>
+        </li>
         <li className="cart__total-price">
           <span>
             Total:
@@ -48,6 +54,7 @@ const CartForm = ({
 export default CartForm;
 
 CartForm.propTypes = {
+  handleDiscount: PropTypes.func.isRequired,
   formHandle: PropTypes.func.isRequired,
   selectOptionHandle: PropTypes.func.isRequired,
   data: PropTypes.shape({

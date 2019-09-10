@@ -57,6 +57,9 @@ export const selectShippingOption = (option) => ({
 export const COUNT_TOTAL_PRICE = createActionName('COUNT_TOTAL_PRICE');
 export const countTotalPrice = () => ({ type: COUNT_TOTAL_PRICE });
 
+export const SET_DISCOUNT = createActionName('SET_DISCOUNT');
+export const setDiscount = (number) => ({ type: SET_DISCOUNT, discount: number });
+
 /* INITIAL STATE */
 
 const initialState = {
@@ -68,6 +71,7 @@ const initialState = {
   },
   cart: [],
   data: {
+    discount: 0,
     shipping: 0,
     subTotal: 0,
     total: 0,
@@ -139,13 +143,23 @@ export default function shopReducer(statePart = initialState, action = {}) {
           shipping: action.shipping,
         },
       };
+    case SET_DISCOUNT:
+      return {
+        ...statePart,
+        data: {
+          ...statePart.data,
+          discount: action.discount,
+        },
+      };
     case COUNT_TOTAL_PRICE:
       return {
         ...statePart,
         data: {
           ...statePart.data,
           subTotal: statePart.cart.reduce((a, b) => a + b.itemsPrice, 0),
-          total: statePart.cart.reduce((a, b) => a + b.itemsPrice, 0) + statePart.data.shipping,
+          total: (statePart.cart.reduce((a, b) => a + b.itemsPrice, 0))
+          - ((statePart.cart.reduce((a, b) => a + b.itemsPrice, 0))
+          * (statePart.data.discount / 100)) + statePart.data.shipping,
         },
       };
     default:

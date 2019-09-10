@@ -12,9 +12,11 @@ class Cart extends React.Component {
     this.state = {
       selectedOption: 'premium',
       checkout: false,
+      discount: '',
     };
     this.selectOptionHandle = this.selectOptionHandle.bind(this);
     this.formHandle = this.formHandle.bind(this);
+    this.discountHandle = this.discountHandle.bind(this);
   }
 
   componentDidMount() {
@@ -47,6 +49,27 @@ class Cart extends React.Component {
     countTotal();
   }
 
+  discountHandle(e) {
+    const { setDiscount, countTotal } = this.props;
+    switch (e.target.value) {
+      case 'small':
+        this.setState({ discount: e.target.value });
+        setDiscount(10);
+        break;
+      case 'medium':
+        this.setState({ discount: e.target.value });
+        setDiscount(20);
+        break;
+      case 'high':
+        this.setState({ discount: e.target.value });
+        setDiscount(30);
+        break;
+      default:
+        setDiscount(0);
+    }
+    countTotal();
+  }
+
   render() {
     const {
       cart,
@@ -54,7 +77,7 @@ class Cart extends React.Component {
       removeItem,
       data,
     } = this.props;
-    const { selectedOption, checkout } = this.state;
+    const { selectedOption, checkout, discount } = this.state;
     if (checkout) {
       return <Redirect to="/cart/checkout" />;
     }
@@ -76,6 +99,8 @@ class Cart extends React.Component {
             selectOptionHandle={this.selectOptionHandle}
             data={data}
             selectedOption={selectedOption}
+            handleDiscount={this.discountHandle}
+            discount={discount}
           />
         </div>
       </div>
@@ -86,6 +111,7 @@ class Cart extends React.Component {
 export default Cart;
 
 Cart.propTypes = {
+  setDiscount: PropTypes.func.isRequired,
   cart: PropTypes.arrayOf(cartItemTypes).isRequired,
   changeQuantity: PropTypes.func.isRequired,
   removeItem: PropTypes.func.isRequired,

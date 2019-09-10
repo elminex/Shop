@@ -23,7 +23,7 @@ const ProductPreview = ({ elem }) => {
           <img className="product-preview__image" src={elem.photo} alt={`${elem.name}`} />
         </div>
         <div className="product-preview__mid-right">
-          {elem.stock > 0 ? <span className="product-preview__out-of-stock">Out of stock!</span> : ''}
+          {elem.stock > 0 ? '' : <span className="product-preview__out-of-stock">Out of stock!</span>}
           <span className="product-preview__company">
             Producent:
             <br />
