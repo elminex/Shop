@@ -35,9 +35,9 @@ const Sorting = ({
         {' of '}
         {filteredProducts.length}
       </p>
-      <div>
+      <div className="sorting__label-wrapper">
         <label className="sorting__label" htmlFor="sort">
-          Sort by:
+          {'Sort by: '}
           <select id="sort" value={sorting} onChange={sortingHandler}>
             <option value="name asc">Name</option>
             <option value="price asc">Price ascending</option>
@@ -45,7 +45,7 @@ const Sorting = ({
             <option value="popular desc">Most popular</option>
           </select>
         </label>
-        <label className="sorting__label" htmlFor="productsPerPage">
+        <label className="sorting__label sorting__items" htmlFor="productsPerPage">
           Products per page:
           <select id="productsPerPage" value={productsPerPage} onChange={productsPerPageHandler}>
             <option value="12">12</option>

@@ -6,10 +6,12 @@
   justify-content: space-around;
   align-items: center;
   position: relative;
+  border-bottom: 3px solid $yellow;
+  margin-bottom: 32px;
 
   &__logo {
-    font-size: 2rem;
     line-height: 2rem;
+    text-align: center;
   }
 
   &__nav-logo {
@@ -91,10 +93,6 @@
   .header {
     flex-direction: column;
 
-    &__logo {
-      text-align: center;
-    }
-
     &__nav {
       position: static;
       top: 0;
@@ -112,18 +110,17 @@
       &--active {
         left: 0;
       }
+      &-list {
+        text-align: right;
+      }
 
       &-item {
         display: inline-block;
+        padding: 16px 24px;
       }
     }
 
     &__link {
-      position: relative;
-      text-decoration: none;
-      color: $text-black;
-      text-transform: uppercase;
-      transition: color .2s;
 
       &:after {
         top: 20px;
@@ -151,53 +148,13 @@
 
   .header {
     flex-direction: row;
-    padding: 32px;
+    padding: 20px 50px;
 
     &__logo {
-      font-size: 2rem;
-      line-height: 2rem;
       flex: 1;
     }
     &__nav {
       flex: 5;
-    }
-
-    &__nav-item {
-      padding: 20px 0 20px 60px;
-      font-size: 14px;
-      display: inline-block;
-    }
-
-    &__link {
-      position: relative;
-      text-decoration: none;
-      color: $text-black;
-      text-transform: uppercase;
-      transition: color .2s;
-
-      &:after {
-        content: "";
-        position: absolute;
-        bottom: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 0;
-        height: 4px;
-        background-color: $yellow;
-        transition: all .3s
-      }
-
-      &:hover {
-        color: $yellow;
-      }
-
-      &--active {
-
-        &:after {
-          width: 56px;
-
-        }
-      }
     }
   }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faFacebookSquare, faInstagram, faTwitterSquare, faPinterestSquare,
@@ -6,7 +7,7 @@ import {
 import './Social.scss';
 
 const Social = ({ container }) => (
-  <div className={container === 'header' ? 'social__container social__container--header' : 'social__container social__container--footer'}>
+  <div className={container !== '' ? `social__container social__container--${container}` : 'social__container'}>
     <ul className="social__list">
       <li className="social__item">
         <a className="social__link" href="https://www.facebook.com">
@@ -32,3 +33,7 @@ const Social = ({ container }) => (
   </div>
 );
 export default Social;
+
+Social.propTypes = {
+  container: PropTypes.string.isRequired,
+};

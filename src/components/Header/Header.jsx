@@ -7,7 +7,6 @@ import './Header.scss';
 
 const Header = () => {
   const [menu, setMenu] = useState(false);
-  console.log(menu);
   return (
     <header className="header">
       <h1 className="header__logo">Shop name</h1>

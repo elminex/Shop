@@ -67,14 +67,14 @@ class CartConfirm extends React.Component {
             <textarea type="text" className="checkout__form-textarea" name="comment" value={comment} placeholder="Leave a comment about your order" rows="7" cols="30" onChange={this.changeHandler} />
           </div>
           <div className="checkout__cart-items">
-            <h3>Your cart</h3>
+            <h3>Your cart summary</h3>
             {cart.length === 0 ? <div>Cart is empty</div>
               : (
                 <>
                   <ul className="checkout__cart-list">
                     {cart.map((cartItem) => (
                       <li key={cartItem.product.id}>
-                        {cartItem.product.name}
+                        <span className="checkout__cart-name">{cartItem.product.name}</span>
                         <span className="checkout__cart-quantity">
                           {'Qty: '}
                           {cartItem.quantity}

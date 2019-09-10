@@ -2,26 +2,52 @@
 
 .sorting {
   &__container {
-    padding: 16px 0;
+    padding: 16px 8px;
     margin-bottom: 24px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
   }
 
+  &__items {
+    display: none;
+  }
+
   &__text {
-    display: inline-block;
+    display: block;
+    text-align: center;
     text-transform: uppercase;
     font-weight: bold;
   }
+
   &__label {
     background-color: $background-grey;
     font-size: 14px;
     padding: 20px;
     border-radius: $br-sm;
+    text-align: center;
+    &-wrapper {
+      display: flex;
+    }
 
-    &:first-of-type {
-      margin-right: 8px;
+
+  }
+}
+
+@media (min-width: 768px) {
+  .sorting {
+    &__items {
+      display: block;
+    }
+
+    &__container {
+      justify-content: space-between;
+    }
+
+    &__label {
+      &:first-of-type {
+        margin-right: 8px;
+      }
     }
   }
 }

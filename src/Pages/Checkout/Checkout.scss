@@ -2,18 +2,9 @@
 
 .checkout {
   &__container {
-    padding: 60px 32px 0;
+    padding: 0 32px;
     width: 100%;
     height: 100%;
-  }
-
-  &__row {
-    width: 100%;
-    display: flex;
-
-    & .checkout__form-field:first-child {
-      margin-right: 8px;
-    }
   }
 
   &__title {
@@ -24,19 +15,18 @@
     display: flex;
     flex-direction: column;
     flex: 3;
-    padding-right: 24px;
+    margin-bottom: 32px;
   }
 
   &__form {
     width: 100%;
-    display: flex;
 
     &-field {
       background-color: $background-grey;
       padding: 20px;
       border: none;
       margin-bottom: 12px;
-      flex: 1;
+      width: 100%;
     }
 
     &-textarea {
@@ -52,6 +42,7 @@
   }
 
   &__cart-items {
+    text-align: center;
     flex: 2;
     background-color: $background-grey;
     padding: 16px;
@@ -71,7 +62,49 @@
     }
   }
 
+  &__cart-name {
+    flex: 4;
+  }
+
   &__cart-quantity {
-    margin: 0 8px;
+    flex: 1;
+  }
+}
+
+@media (min-width: 768px) {
+  .checkout {
+    &__row {
+      width: 100%;
+      display: flex;
+
+      & .checkout__form-field:first-child {
+        margin-right: 8px;
+      }
+    }
+
+    &__cart-items {
+      text-align: left;
+    }
+
+    &__inputs {
+      padding-right: 24px;
+      margin: 0;
+    }
+
+    &__form {
+      display: flex;
+
+      &-field {
+        flex: 1;
+      }
+
+      &-button {
+        @include button;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+
   }
 }

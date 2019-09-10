@@ -9,7 +9,7 @@ const Footer = () => (
       <div className="footer__logo">
         LOGO
       </div>
-      <Social />
+      <Social container="footer" />
     </div>
     <nav className="footer__nav">
       <ul className="footer__nav-list">

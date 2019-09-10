@@ -1,19 +1,24 @@
 @import '../../variables.scss';
 
 .cart {
-  padding-top: 60px;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 0 8px;
+
   &--empty {
     text-align: center;
   }
 
   &__title {
-    font-size: 32px;
+    font-size: 24px;
+    text-align: center;
     margin-bottom: 32px;
   }
 
   &__container {
     width: 100%;
     display: flex;
+    flex-direction: column;
   }
 
   &__table {
@@ -21,8 +26,9 @@
     border-collapse: collapse;
 
     &-wrapper {
-      flex: 4;
-      padding: 0 16px;
+      width: 100%;
+      overflow: auto;
+      margin-bottom: 32px;
     }
 
     &-button {
@@ -55,9 +61,8 @@
     flex: 2;
     display: flex;
     flex-direction: column;
-    padding: 16px;
-    margin: 0 16px;
     background-color: $background-grey;
+    padding: 16px;
 
     &-shipping-title {
       font-size: 16px;
@@ -71,11 +76,12 @@
       color: $text-grey;
       font-size: 14px;
       font-weight: bold;
+
       &--lg {
         font-size: 16px;
       }
     }
-    
+
     ul {
       margin: 0;
       padding: 0;
@@ -86,6 +92,7 @@
       &:first-of-type {
         margin-bottom: 8px;
       }
+
       &:last-of-type {
         margin-bottom: 8px;
       }
@@ -106,5 +113,26 @@
     &-button {
       @include button;
     }
+  }
+}
+
+@media (min-width: 768px) {
+  .cart {
+    max-width: 100%;
+
+    &__title {
+      font-size: 32px;
+      text-align: left;
+    }
+
+    &__container {
+      flex-direction: row;
+    }
+
+    &__table-wrapper {
+      flex: 4;
+      margin: 0 16px 0 0
+    }
+
   }
 }

@@ -1,0 +1,22 @@
+@import '../../variables.scss';
+
+.contact {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.5;
+    color: $text-black;
+    background-color: $background-grey;
+    text-align: center;
+
+    svg {
+      margin-right: 8px;
+    }
+  }
+
+  &__mail {
+    text-decoration: none;
+  }
+
+
+}

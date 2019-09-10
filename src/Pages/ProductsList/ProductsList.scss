@@ -29,9 +29,27 @@
   }
 
   &__item {
-    width: 30%;
-    margin-bottom: 12px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 12px;
     background-color: $background-grey;
     border-radius: $br-sm;
+  }
+}
+
+@media (min-width: 768px) {
+  .products-list {
+    &__item {
+      width: 48%;
+      margin: 0 0 12px;
+    }
+  }
+}
+
+@media(min-width: 992px) {
+  .products-list {
+    &__item {
+      width: 32%;
+    }
   }
 }

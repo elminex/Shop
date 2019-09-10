@@ -2,10 +2,11 @@
 
 .filter-menu {
   &__container {
-    padding: 12px 16px;
+    padding: 12px 0;
     background-color: $background-grey;
-    font-size: 16px;
-    margin-bottom: 62px;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-around;
   }
 
   &__title {
@@ -14,50 +15,71 @@
   }
 
   &__list {
-    margin: 0;
-    padding: 0 0 16px;
-    list-style-type: none;
+    display: none;
   }
+}
 
-  &__item {
-    width: 100%;
-  }
-
-  &__button {
-    width: 150px;
-    padding: 15px 0 15px 32px;
-    margin-bottom: 8px;
-    background-color: transparent;
-    border: none;
-    outline: none;
-    text-transform: capitalize;
-    cursor: pointer;
-    color: $text-grey;
-    position: relative;
-    text-align: left;
-
-    &:after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: -16px;
-      transform: translateY(-50%);
-      width: 0;
-      height: 4px;
-      background-color: $yellow;
-      transition: all .3s
+@media(min-width: 768px) {
+  .filter-menu {
+    &__mobile {
+      display: none;
+    }
+    &__container {
+      padding: 12px 16px;
+      background-color: $background-grey;
+      font-size: 16px;
+      margin-bottom: 62px;
+      margin-right: 12px;
+      display: block;
     }
 
-    &:hover {
-      color: $yellow;
+    &__list {
+      display: block;
+      margin: 0;
+      padding: 0 0 16px;
+      list-style-type: none;
     }
 
-    &--active {
-      scale: 1.1;
-      color: $yellow;
+    &__item {
+      width: 100%;
+    }
+
+    &__button {
+      width: 150px;
+      padding: 15px 0 15px 32px;
+      margin-bottom: 8px;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      text-transform: capitalize;
+      cursor: pointer;
+      color: $text-grey;
+      position: relative;
+      text-align: left;
 
       &:after {
-        width: 40px;
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: -16px;
+        transform: translateY(-50%);
+        width: 0;
+        height: 4px;
+        background-color: $yellow;
+        transition: all .3s
+      }
+
+      &:hover {
+        color: $yellow;
+      }
+
+      &--active {
+        scale: 1.1;
+        color: $yellow;
+
+        &:after {
+          width: 40px;
+        }
       }
     }
   }
