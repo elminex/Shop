@@ -10,8 +10,8 @@ const FilterMenu = ({ filterHandler, filter, products }) => {
   const brandHandler = (e) => {
     filterHandler(undefined, e.currentTarget.value);
   };
-  const categories = Array.from(new Set(products.map((item) => item.category)));
-  const brands = Array.from(new Set(products.map((item) => item.company)));
+  const categories = Array.from(new Set(products.map((item) => item.category))).sort((a, b) => a.localeCompare(b, 'en', { ignorePunctuation: true }));
+  const brands = Array.from(new Set(products.map((item) => item.company))).sort((a, b) => a.localeCompare(b, 'en', { ignorePunctuation: true }));
   return (
     <div className="filter-menu__container">
       <div>

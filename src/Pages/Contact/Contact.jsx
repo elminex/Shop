@@ -6,6 +6,7 @@ import './Contact.scss';
 
 const Contact = () => (
   <div className="contact__container">
+    <h2>Contact us</h2>
     <span>
       <FontAwesomeIcon icon={faMobileAlt} />
       {'+48 111 222 3333'}

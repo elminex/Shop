@@ -7,6 +7,14 @@
   text-decoration: none;
   color: $text-black;
 
+  &__out-of-stock {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: red;
+    text-align: right;
+  }
+
   &__title {
     font-size: 20px;
     color: $text-black;
