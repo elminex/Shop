@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm-run-all -p -l start-*",
-    "start-server": "cd server && node server.js",
+    "start": "cd server && node server.js",
     "start-client": "webpack-dev-server --hot --open --mode development",
     "build": "webpack --mode production"
   },
