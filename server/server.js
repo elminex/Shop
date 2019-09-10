@@ -19,4 +19,4 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/../dist/index.html'));
 });
 
-app.listen(process.env.PORT, () => console.log('Server working on port 3000'));
+app.listen(process.env.PORT || 3000, () => console.log('Server working on port 3000'));
