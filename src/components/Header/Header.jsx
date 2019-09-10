@@ -20,22 +20,22 @@ const Header = () => {
         </button>
         <ul className="header__nav-list">
           <li className="header__nav-item">
-            <NavLink className="header__link" activeClassName="header__link--active" exact to="/">Home</NavLink>
+            <NavLink className="header__link" onClick={() => setMenu(!menu)} activeClassName="header__link--active" exact to="/">Home</NavLink>
           </li>
           <li className="header__nav-item">
-            <NavLink className="header__link" activeClassName="header__link--active" to="/shop">Shop</NavLink>
+            <NavLink className="header__link" onClick={() => setMenu(!menu)} activeClassName="header__link--active" to="/shop">Shop</NavLink>
           </li>
           <li className="header__nav-item">
-            <NavLink className="header__link" activeClassName="header__link--active" to="/terms">Terms and Conditions</NavLink>
+            <NavLink className="header__link" onClick={() => setMenu(!menu)} activeClassName="header__link--active" to="/terms">Terms and Conditions</NavLink>
           </li>
           <li className="header__nav-item">
-            <NavLink className="header__link" activeClassName="header__link--active" to="/contact">Contact</NavLink>
+            <NavLink className="header__link" onClick={() => setMenu(!menu)} activeClassName="header__link--active" to="/contact">Contact</NavLink>
           </li>
           <li className="header__nav-item">
-            <NavLink className="header__link" activeClassName="header__link--active" to="/cart">Cart</NavLink>
+            <NavLink className="header__link" onClick={() => setMenu(!menu)} activeClassName="header__link--active" to="/cart">Cart</NavLink>
           </li>
           <li className="header__nav-item">
-            <NavLink className="header__link" activeClassName="header__link--active" to="/search">Search</NavLink>
+            <NavLink className="header__link" onClick={() => setMenu(!menu)} activeClassName="header__link--active" to="/search">Search</NavLink>
           </li>
         </ul>
         <Social container="header" />
