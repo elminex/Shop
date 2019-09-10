@@ -157,7 +157,7 @@ export default function shopReducer(statePart = initialState, action = {}) {
 
 export const loadProductsRequest = () => async (dispatch) => {
   dispatch(startRequest());
-  const response = await fetch('http://localhost:3000');
+  const response = await fetch('/api');
   if (response.ok) {
     const json = await response.json();
     dispatch(getProducts(json));
