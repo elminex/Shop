@@ -13,6 +13,9 @@
 
     &-item {
       margin: 8px;
+      &--inactive {
+        display: none;
+      }
     }
   }
 
@@ -36,14 +39,19 @@
       background-color: $yellow;
     }
 
-    &--hidden {
-      visibility: hidden;
-    }
   }
 }
 
 @media (min-width: 768px) {
   .pagination__list {
     justify-content: flex-end;
+    &-item--inactive {
+      display: block;
+    }
+  }
+  .pagination__button {
+    &--hidden {
+      visibility: hidden;
+    }
   }
 }

@@ -32,10 +32,10 @@ const Pagination = ({
           ? (
             <li
               key={++page}
-              className="pagination__list-item"
+              className={`pagination__list-item ${page !== presentPage ? 'pagination__list-item pagination__list-item--inactive' : ''}`}
             >
               <button
-                className={`pagination__button ${((page) === presentPage) ? ' pagination__button--active' : ''}`}
+                className={`pagination__button ${((page) === presentPage) ? 'pagination__button--active' : ''}`}
                 type="button"
                 onClick={() => { changePage(page); }}
               >
