@@ -51,7 +51,8 @@ class Cart extends React.Component {
 
   discountHandle(e) {
     const { setDiscount, countTotal } = this.props;
-    switch (e.target.value) {
+    const discountText = e.target.value.toLowerCase();
+    switch (discountText) {
       case 'small':
         this.setState({ discount: e.target.value });
         setDiscount(10);
@@ -65,6 +66,7 @@ class Cart extends React.Component {
         setDiscount(30);
         break;
       default:
+        this.setState({ discount: e.target.value });
         setDiscount(0);
     }
     countTotal();
