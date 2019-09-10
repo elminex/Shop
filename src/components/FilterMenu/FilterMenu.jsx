@@ -32,7 +32,7 @@ const FilterMenu = ({ filterHandler, filter, products }) => {
       </div>
       <div>
         <h2 className="filter-menu__title">Brand</h2>
-        <select className="filter-menu__mobile" onChange={categoryHandler} value={filter}>
+        <select className="filter-menu__mobile" onChange={brandHandler} value={filter}>
           <option value="" disabled hidden>Please Choose...</option>
           {brands.map((item, index) => (
             <option value={item} key={index}>{item}</option>
